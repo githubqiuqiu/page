@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="css/wu.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtCss.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtIcon.css" />
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+    <link rel="stylesheet" href="js/themes/default/default.css" />
+    <script charset="utf-8" src="js/kindeditor-min.js"></script>
+    <script charset="utf-8" src="js/zh-CN.js"></script>
+
+    <script>
+        KindEditor.ready(function(K) {
+            introEditor = K.create("#content", {
+                items : [ 'source', '|', 'undo', 'redo', '|', 'preview', 'print',
+                    'template', 'code', 'cut', 'copy', 'paste', 'plainpaste',
+                    'wordpaste', '|', 'justifyleft', 'justifycenter',
+                    'justifyright', 'justifyfull', 'insertorderedlist',
+                    'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                    'superscript', 'clearhtml', 'quickformat', 'selectall',
+                    '|', 'formatblock', 'fontname', 'fontsize', '|',
+                    'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                    'strikethrough', 'lineheight', 'removeformat', '|',
+                    'image', 'flash', 'media', 'insertfile', 'table', 'hr',
+                    'pagebreak', 'anchor', 'link', 'unlink', '|', 'about',
+                    'fullscreen' ],
+            });
+        });
+    </script>
+</head>
+
+
+<body class="easyui-layout">
+<div  data-options="fit:true" region="north">
+
+    <form method="post" id="searchForm" >
+        <input type="hidden" name="parentId" id="parentId"/>
+        <input type="hidden" name="id" id="id"/>
+        <input type="hidden" name="iconCls" id="iconCls"/>
+        <input type="hidden" name="oldVal" id="oldVal"/>
+        <input type="hidden" name="organSeq" id="organSeq"/>
+        <input type="hidden" name="removed" id="removed" value="0"/>
+        <table style="width:100%;table-layout:fixed;" class="form-table">
+            <tr style="background-color: lightblue">
+                <center><th class="form-label"></th></center>
+                <td colspan="5" ><center>修改栏目</center></td>
+            </tr>
+            <tr >
+
+                <th class="form-label">名称:</th>
+                <td colspan="4"><input class="easyui-textbox" name="text" id="text" style="width: 400px"
+                                       data-options="required:true,validType:['maxLength[100]'], tipPosition: 'top'"  /><font style="color: red"></font></td>
+
+            </tr>
+            <tr >
+                <th class="form-label">上级栏目:</th>
+                <td colspan="5"><font style="color: lightskyblue">根目录</font></td>
+
+            </tr>
+            <tr >
+                <th class="form-label">内容模板:</th>
+                <td colspan="5">
+                    <select>
+                        <option>执法总队内容模板</option>
+                    </select>
+                </td>
+            </tr>
+            <tr >
+                <th class="form-label">排序:</th>
+                <td colspan="5">
+                    <select style="width: 50px">
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </td>
+            </tr>
+            <tr >
+                <th class="form-label">描述:</th>
+                <td colspan="5">
+                   <textarea style="width: 300px;height: 100px"></textarea>
+                </td>
+            </tr>
+            <tr >
+                <th class="form-label">栏目直接包含数据:</th>
+                <td colspan="5">
+                    <input type="radio" name="isdata" checked>是
+                    <input type="radio" name="isdata">否
+                </td>
+            </tr>
+            <tr >
+                <th class="form-label">创建索引页面:</th>
+                <td colspan="5">
+                    <input type="radio" name="isindex" checked>是
+                    <input type="radio" name="isindex">否
+                </td>
+            </tr>
+
+
+            <tr >
+                <th class="form-label">索引模板:</th>
+                <td colspan="5">
+                    <select>
+                        <option>执法总队索引模板</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr >
+                <th class="form-label">索引页面记录条数:</th>
+                <td colspan="5" style="width: 100px">
+                    <select>
+                        <option>10</option>
+                        <option>20</option>
+                        <option>30</option>
+                    </select>
+                </td>
+            </tr>
+            <tr >
+                <td colspan="5"></td>
+            </tr>
+
+
+        </table>
+    </form>
+
+
+    <table width="100%" >
+        <tr>
+            <td style="text-align:center;" colspan="3">
+                <a class="easyui-linkbutton" id="saveBtn">修改</a>
+                <a class="easyui-linkbutton" id="resetBtn">删除</a>
+                <a class="easyui-linkbutton" id="resetBtn1" href="lanmumanage.html">返回</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+</body>
+</html>

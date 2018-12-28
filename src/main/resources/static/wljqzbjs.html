@@ -1,0 +1,479 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="css/wu.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtCss.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtIcon.css" />
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <script>
+
+        function xx(){
+            (function($){
+                function pagerFilter(data){
+                    if ($.isArray(data)){    // is array
+                        data = {
+                            total: data.length,
+                            rows: data
+                        }
+                    }
+                    var target = this;
+                    var dg = $(target);
+                    var state = dg.data('datagrid');
+                    var opts = dg.datagrid('options');
+                    if (!state.allRows){
+                        state.allRows = (data.rows);
+                    }
+                    if (!opts.remoteSort && opts.sortName){
+                        var names = opts.sortName.split(',');
+                        var orders = opts.sortOrder.split(',');
+                        state.allRows.sort(function(r1,r2){
+                            var r = 0;
+                            for(var i=0; i<names.length; i++){
+                                var sn = names[i];
+                                var so = orders[i];
+                                var col = $(target).datagrid('getColumnOption', sn);
+                                var sortFunc = col.sorter || function(a,b){
+                                    return a==b ? 0 : (a>b?1:-1);
+                                };
+                                r = sortFunc(r1[sn], r2[sn]) * (so=='asc'?1:-1);
+                                if (r != 0){
+                                    return r;
+                                }
+                            }
+                            return r;
+                        });
+                    }
+                    var start = (opts.pageNumber-1)*parseInt(opts.pageSize);
+                    var end = start + parseInt(opts.pageSize);
+                    data.rows = state.allRows.slice(start, end);
+                    return data;
+                }
+
+                var loadDataMethod = $.fn.datagrid.methods.loadData;
+                var deleteRowMethod = $.fn.datagrid.methods.deleteRow;
+                $.extend($.fn.datagrid.methods, {
+                    clientPaging: function(jq){
+                        return jq.each(function(){
+                            var dg = $(this);
+                            var state = dg.data('datagrid');
+                            var opts = state.options;
+                            opts.loadFilter = pagerFilter;
+                            var onBeforeLoad = opts.onBeforeLoad;
+                            opts.onBeforeLoad = function(param){
+                                state.allRows = null;
+                                return onBeforeLoad.call(this, param);
+                            }
+                            var pager = dg.datagrid('getPager');
+                            pager.pagination({
+                                onSelectPage:function(pageNum, pageSize){
+                                    opts.pageNumber = pageNum;
+                                    opts.pageSize = pageSize;
+                                    pager.pagination('refresh',{
+                                        pageNumber:pageNum,
+                                        pageSize:pageSize
+                                    });
+                                    dg.datagrid('loadData',state.allRows);
+                                }
+                            });
+                            $(this).datagrid('loadData', state.data);
+                            if (opts.url){
+                                $(this).datagrid('reload');
+                            }
+                        });
+                    },
+                    loadData: function(jq, data){
+                        jq.each(function(){
+                            $(this).data('datagrid').allRows = null;
+                        });
+                        return loadDataMethod.call($.fn.datagrid.methods, jq, data);
+                    },
+                    deleteRow: function(jq, index){
+                        return jq.each(function(){
+                            var row = $(this).datagrid('getRows')[index];
+                            deleteRowMethod.call($.fn.datagrid.methods, $(this), index);
+                            var state = $(this).data('datagrid');
+                            if (state.options.loadFilter == pagerFilter){
+                                for(var i=0; i<state.allRows.length; i++){
+                                    if (state.allRows[i] == row){
+                                        state.allRows.splice(i,1);
+                                        break;
+                                    }
+                                }
+                                $(this).datagrid('loadData', state.allRows);
+                            }
+                        });
+                    },
+                    getAllRows: function(jq){
+                        return jq.data('datagrid').allRows;
+                    }
+                })
+            })(jQuery);
+        }
+
+        /**
+         * 产生随机整数，包含下限值，但不包括上限值
+         * @param {Number} lower 下限
+         * @param {Number} upper 上限
+         * @return {Number} 返回在下限到上限之间的一个随机整数
+         */
+        function random(lower, upper) {
+            return Math.floor(Math.random() * (upper - lower)) + lower;
+        }
+
+        function getData(){
+            var rows = [];
+                for( i=12;i>0;i--){
+                    rows.push({
+                        inv:"2013年"+i+"月" ,
+                        date:random(50,65),
+                        name: random(50,65),
+                        amount: random(50,65),
+                        price: random(50,65),
+                        cost: random(50,65),
+                        note: random(50,65)
+                    });
+                }
+            for( i=12;i>4;i--){
+                rows.push({
+                    inv:"2012年"+i+"月" ,
+                    date:random(50,65),
+                    name: random(50,65),
+                    amount: random(50,65),
+                    price: random(50,65),
+                    cost: random(50,65),
+                    note: random(50,65)
+                });
+            }
+            return rows;
+        }
+
+        $(function(){
+
+            $('#dg').datagrid({data:getData()}).datagrid('clientPaging');
+        });
+
+        function change(){
+            $('#dg').datagrid({data:getData()}).datagrid('clientPaging');
+        }
+
+    </script>
+</head>
+
+
+<body >
+<div class="easyui-layout" data-options="fit:true">
+    <div class="easyui-layout" data-options="fit:true">
+        <div class="search-condition" title="查询条件" region="north" border="false" style="height:100px;" >
+            <form method="post" id="searchForm">
+
+                <div style="padding-top:10px">
+                    &nbsp; &nbsp; &nbsp;
+                    时间:
+                    <select style="width: 100px">
+                        <option>2013</option>
+                        <option>2012</option>
+                    </select>
+                    <select style="width: 100px">
+                        <option>12</option>
+                        <option>11</option>
+                        <option>10</option>
+                        <option>9</option>
+                        <option>8</option>
+                        <option>7</option>
+                        <option>6</option>
+                        <option>5</option>
+                        <option>4</option>
+                        <option>3</option>
+                        <option>2</option>
+                        <option>1</option>
+                    </select>
+
+                    区域:
+                    <select style="width: 100px">
+                        <option>四川</option>
+                    </select>
+                    <select style="width: 100px">
+                        <option>成都</option>
+                        <option>攀枝花</option>
+                        <option>自贡</option>
+                        <option>泸州</option>
+                        <option>宜宾</option>
+                        <option>达州</option>
+                        <option>绵阳</option>
+                        <option>广元</option>
+                        <option>南充</option>
+                        <option>广安</option>
+                        <option>遂宁</option>
+                        <option>内江</option>
+                        <option>乐山</option>
+                        <option>雅安</option>
+                    </select>
+
+                    <a class="easyui-linkbutton" id="searchBtn" data-options="iconCls:'icon-search'"> 查询 </a>&nbsp;&nbsp;
+                    <a class="easyui-linkbutton" id="searchBtn1" data-options="iconCls:'icon-reload'" onclick="change()">运算</a>
+
+
+                </div>
+            </form>
+        </div>
+        <div region="center" border="false" style="width: 100%" >
+            <div class="gridTool" id="tb">
+              <!--  <a class="easyui-linkbutton" iconCls="icon-add" plain="true" id="addBtn" onclick="add()">新增</a>&nbsp;|&nbsp;
+                <a class="easyui-linkbutton" iconCls="icon-remove" plain="true" id="removeBtn">删除</a>&nbsp;&nbsp;-->
+
+            </div>
+            <table id="dg" class="easyui-datagrid"
+                   data-options="
+                rownumbers:true,
+                singleSelect:true,
+                autoRowHeight:false,
+                pagination:true,
+                pageSize:10">
+                <thead>
+                <tr>
+                    <th field="inv" width="150px"  align="center">月份</th>
+                    <th field="date" width="150px"  align="center">业务总量</th>
+                    <th field="name" width="150px"  align="center">新订单</th>
+                    <th field="amount" width="150px" align="center">库存周转次数</th>
+                    <th field="price" width="150px" align="center">设备利用率</th>
+                    <th field="cost"width="150px"  align="center">从业人员</th>
+                    <th field="note" width="190px" align="center">LPI</th>
+                </tr>
+                </thead>
+            </table>
+              <!-- <table  class="easyui-datagrid"
+                         data-options=" fitColumns:true"
+                         iconCls="icon-save"
+                         rownumbers="true" pagination="true"
+                         toolbar="#tb">
+                <thead>
+                <tr>
+                    <th data-options="field:'ck',checkbox:true" width="5%"></th>
+                    <th field="c1" align="center" width="50px">月份</th>
+                    <th field="c2" align="center" width="50px">业务总量</th>
+                    <th field="c3" align="center" width="50px" >新订单</th>
+                    <th field="c4" align="center" width="50px" >库存周转次数</th>
+                    <th field="c5" align="center" width="50px">设备利用率</th>
+                    <th field="c6" align="center" width="50px" >从业人员</th>
+                    <th field="c7" align="center" width="50px" >LPI</th>
+
+
+                </tr>
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td>2013年8月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td1">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2013年7月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td  id="td2">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2013年6月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td3">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2013年5月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td4">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2013年4月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td5">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2013年3月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td6">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2013年2月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td7">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2013年1月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td8">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年12月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td9">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年11月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td10">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年10月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td11">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年9月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td12">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年8月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td13">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年7月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td14">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年6月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td15">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年5月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td16">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年4月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td17">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年3月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td18">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年2月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td19">52.9</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>2012年1月</td>
+                    <td>57.1</td>
+                    <td>52.6</td>
+                    <td>51.4</td>
+                    <td>50.7</td>
+                    <td>51.6</td>
+                    <td id="td20">52.9</td>
+                </tr>
+                </tbody>
+                </thead>
+            </table>-->
+        </div>
+    </div>
+</div>
+</body>
+</html>

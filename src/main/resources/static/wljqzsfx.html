@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="js/page1/common.css">
+    <link rel="stylesheet" href="js/page1/swiper.min.css">
+    <script src="js/page1/swiper.min.js"></script>
+    <script type="text/javascript" src="js/page1/WdatePicker.js"></script>
+    <link href="js/page1/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/page1/jquery-min.js"></script>
+    <script type="text/javascript" src="js/page1/jquery-form.js"></script>
+    <script type="text/javascript" src="js/page1/echarts.min.js"></script>
+    <script type="text/javascript" src="js/page1/ecStat.min.js"></script>
+    <script type="text/javascript" src="js/page1/dataTool.min.js"></script>
+    <script type="text/javascript" src="js/page1/china.js"></script>
+    <script type="text/javascript" src="js/page1/world.js"></script>
+    <script type="text/javascript" src="js/page1/api.js"></script>
+    <script type="text/javascript" src="js/page1/bmap.min.js"></script>
+    <script type="text/javascript" src="js/page1/simplex.js"></script>
+</head>
+<script type="text/javascript">
+    /**
+     * 产生随机整数，包含下限值，但不包括上限值
+     * @param {Number} lower 下限
+     * @param {Number} upper 上限
+     * @return {Number} 返回在下限到上限之间的一个随机整数
+     */
+    function random(lower, upper) {
+        return Math.floor(Math.random() * (upper - lower)) + lower;
+    }
+
+    $(function(){
+        tb1();
+    });
+    function tb1(){
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+
+        data = [["2012年1月",random(20,99)],["2012年2月",random(20,99)],["2012年3月",random(20,99)],["2012年4月",random(20,99)],
+            ["2012年5月",random(20,99)],["2012年6月",random(20,99)],["2012年7月",random(20,99)],["2012年8月",random(20,99)],["2012年9月",random(20,99)],
+            ["2012年10月",random(20,99)],["2012年11月",random(20,99)],["2012年12月",random(20,99)],["2013年1月",random(20,99)],["2013年2月",random(20,99)],
+            ["2013年3月",random(20,99)],["2013年4月",random(20,99)],["2013年5月",random(20,99)],["2013年6月",random(20,99)],["2013年7月",random(20,99)],
+
+        ];
+
+        var dateList = data.map(function (item) {
+            return item[0];
+        });
+        var valueList = data.map(function (item) {
+            return item[1];
+        });
+
+        option = {
+            // Make gradient line here
+            visualMap: {
+                show: false,
+                type: 'continuous',
+                seriesIndex: 0,
+                min: 0,
+                max: 400
+            },
+            title: {
+                left: 'center',
+                text: 'LPI走势图(%)'
+            },
+            tooltip: {
+                formatter: $("#cs").val()+":<br/>{b} : {c}%",
+                trigger: 'axis'
+            },
+            xAxis: {
+                name: '年份',
+                data: dateList
+            },
+            yAxis: {
+                name: '百分比',
+                splitLine: {show: false}
+            },
+
+            series: {
+                type: 'line',
+                showSymbol: false,
+                data: valueList
+            }
+        };;
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+
+</script>
+<body style="height: 90%; margin: 0">
+<div style="padding-top: 20px">
+    城市:
+    <select id="cs" onchange="tb1()">
+        <option>四川</option>
+        <option>成都</option>
+        <option>攀枝花</option>
+        <option>自贡</option>
+        <option>泸州</option>
+        <option>宜宾</option>
+        <option>达州</option>
+        <option>绵阳</option>
+        <option>广元</option>
+        <option>南充</option>
+        <option>广安</option>
+        <option>遂宁</option>
+        <option>内江</option>
+        <option>乐山</option>
+        <option>雅安</option>
+    </select>
+
+</div>
+
+<div id="container" style="height: 100%"></div>
+
+</body>
+</html>

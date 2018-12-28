@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Loading nested subgrid data - jQuery EasyUI Demo</title>
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
+    <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="https://www.jeasyui.com/easyui/datagrid-detailview.js"></script>
+</head>
+<body>
+
+
+<table id="dg"></table>
+<script type="text/javascript">
+
+
+    var conf = {
+        options:{
+            fitColumns:true,
+            columns:[[
+                {field:'company',title:'指标名称',width:200},
+                {field:'contact',title:'指标代码',width:200},
+                {field:'country',title:'指标类型',width:200},
+                {field:'country1',title:'线网类型',width:200},
+                {field:'country2',title:'操作',width:200}
+            ]],
+            data:[
+                {company:'轨道交通运营绩效体系',contact:'SYSTEM',country:'其他指标'
+                    ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+
+            ]
+        },
+        subgrid:{
+            options:{
+                fitColumns:true,
+                foreignField:'companyid',
+                columns:[[
+                    {field:'company',title:'指标名称',width:200},
+                    {field:'contact',title:'指标代码',width:200},
+                    {field:'country',title:'指标类型',width:200},
+                    {field:'country1',title:'线网类型',width:200},
+                    {field:'country2',title:'操作',width:200}
+                ]],
+                data:[
+                    {company:'线网指标',contact:'LI',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'运营路线条数',contact:'LI1',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'运营路线长度',contact:'BASIC',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'网络运营长度',contact:'BASIC',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'网络运营长度增长率',contact:'BASIC',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'区间数',contact:'BASIC',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'运营里程数',contact:'BASIC',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'绩效指标',contact:'BASIC',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'线路车站数',contact:'BASIC',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'换乘车站数',contact:'BASIC',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'绩效指标',contact:'BASIC',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'绩效指标',contact:'BASIC',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'绩效指标',contact:'BASIC',country:'其他指标'
+                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                ]
+            },
+            subgrid:{
+                options:{
+                    fitColumns:true,
+                    foreignField:'orderid',
+                    columns:[[
+                        {field:'company',title:'指标名称',width:200},
+                        {field:'contact',title:'指标代码',width:200},
+                        {field:'country',title:'指标类型',width:200},
+                        {field:'country1',title:'线网类型',width:200},
+                        {field:'country2',title:'操作',width:200}
+                    ]],
+                    data:[
+                        {company:'绩效指标',contact:'BASIC',country:'其他指标'
+                            ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    ]
+                },
+                /*subgrid:{
+                    options:{
+                        fitColumns:true,
+                        foreignField:'pid',
+                        singleSelect:true,
+                        columns:[[
+                            {field:'pnumber',title:'Product Number',width:200},
+                            {field:'pname',title:'Product Name',width:200},
+                            {field:'supplier',title:'Supplier',width:200}
+                        ]],
+                        data:[
+                            {pnumber:'00100823',pname:'Canon PowerShot A1300',supplier:'Canon'},
+                            {pnumber:'12023423',pname:'Cisco RV110W-A-NA-K9',supplier:'Cisco'},
+                            {pnumber:'82312393',pname:'Nikon COOLPIX L26 16.1 MP',supplier:'Nikon'}
+                        ]
+                    }
+                }*/
+            }
+        }
+    };
+
+    $(function(){
+        $('#dg').datagrid({
+            //title:'DataGrid - Nested SubGrid',
+        }).datagrid('subgrid', conf);
+
+        var row = $("#dg").datagrid("getRows");
+        for (var r = 0; r < row.length; r++)
+        {
+            $("#dg").datagrid("expandRow",r);
+
+        }
+    });
+</script>
+
+
+</body>
+</html>

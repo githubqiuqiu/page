@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="css/wu.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon.css" />
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+
+</head>
+<body class="easyui-layout">
+<!-- begin of header
+<div class="wu-header" data-options="region:'north',border:false,split:true">
+    <div class="wu-header-left">
+        <h1>EasyUI Web Admin</h1>
+    </div>
+    <div class="wu-header-right">
+        <p><strong class="easyui-tooltip" title="2条未读消息">admin</strong>，欢迎您！</p>
+        <p><a href="#">网站首页</a>|<a href="#">支持论坛</a>|<a href="#">帮助中心</a>|<a href="#">安全退出</a></p>
+    </div>
+</div> -->
+<div class="head" data-options="region:'north',border:false,split:true">
+  <div class="w1200 clearfix">
+    <h2 class="fl logo">四川省交通运输物流公共信息平台物流决策分析系统</h2>
+      <div class="fr"><a href="#">返回门户首页</a></div>
+    <div class="fr user clearfix mr12"> <a href="#">
+      <div class="img"><img src="images/user.jpg"></div>
+      <div class="fl"><b>张三丰</b>,欢迎你</div>
+      </a> </div>
+  </div>
+</div>
+<!-- end of header -->
+<!-- begin of sidebar -->
+<div class="wu-sidebar" style="width: 185px" data-options="region:'west',split:true,border:true,title:'导航菜单'">
+    <div class="easyui-accordion" data-options="border:false,fit:true">
+        <div title="网站信息内容管理" data-options="iconCls:'icon-wrench'" style="padding:5px;">
+            <!--<ul class="easyui-tree wu-side-tree">
+                <li iconCls="icon-users"><a href="javascript:void(0)" onclick="addTab('用户信息管理','userinfo.html')">用户信息管理</a></li>
+                <li iconCls="icon-cog"><a href="javascript:void(0)" onclick="addTab('组织机构管理管理','organ.html')">组织机构管理</a></li>
+                <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" onclick="addTab('用户赋权管理','userrole.html')">用户赋权管理</a></li>
+               &lt;!&ndash; <li iconCls="icon-book"><a href="javascript:void(0)" onclick="addTab('人员管理','updatelanmu.html')">人员信息</a></li>
+                <li iconCls="icon-user-group"><a href="javascript:void(0)" onclick="addTab('菜单管理','roletree.html')">菜单信息</a></li>&ndash;&gt;
+            </ul>-->
+            <ul class="easyui-tree" id="tree"  lines="true">
+                <li>
+                    <span>概况分析</span>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('大数据分析','https://datav.aliyun.com/share/1feadeba7ce1a914b8ae7079ac03db2c')">大数据分析</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <span>物流价格指数分析</span>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('价格指数分析','jgzsfx.html')">价格指数分析</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('价格指数查询','jgzscx.html')">价格指数查询</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <span>物流景气指数分析</span>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('物流景气指数管理','wljqzsgl.html')">物流景气指数管理</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('物流指标体系元集','wljqzbcj.html')">物流景气指标采集</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('物流景气指标质量管理','wljqzbzlgl.html')">物流景气指标质量管理</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('物流景气指标计算','wljqzbjs.html')">物流景气指标计算</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('物流景气指数分析','wljqzsfx.html')">物流景气指数分析</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <span>物流经济运行分析</span>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('区域物流流向分析','qywllxfx.html')">区域物流流向分析</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('重点物资流向分析','zdwzlxfx.html')">重点物资流向分析</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('热门线路和货物分析','rmxlandhwfx.html')">热门线路和货物分析</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="addTab('重点物流基地吞吐分析','zdwljdttfx.html')">重点物流基地吞吐分析</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+
+        <!--<div title="评论管理" data-options="iconCls:'icon-wrench'" style="padding:5px;">
+            &lt;!&ndash;<ul class="easyui-tree wu-side-tree">
+                <li iconCls="icon-users"><a href="javascript:void(0)" onclick="addTab('用户信息管理','userinfo.html')">用户信息管理</a></li>
+                <li iconCls="icon-cog"><a href="javascript:void(0)" onclick="addTab('组织机构管理管理','organ.html')">组织机构管理</a></li>
+                <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" onclick="addTab('用户赋权管理','userrole.html')">用户赋权管理</a></li>
+               &lt;!&ndash; <li iconCls="icon-book"><a href="javascript:void(0)" onclick="addTab('人员管理','updatelanmu.html')">人员信息</a></li>
+                <li iconCls="icon-user-group"><a href="javascript:void(0)" onclick="addTab('菜单管理','roletree.html')">菜单信息</a></li>&ndash;&gt;
+            </ul>&ndash;&gt;
+            <ul class="easyui-tree" id="tree1"  lines="true">
+                <li>
+                    <span>评论管理</span>
+                </li>
+                <li>
+                    <span>投诉举报管理</span>
+                </li>
+                <li>
+                    <span>局长信箱管理</span>
+                </li>
+                <li>
+                    <span>民意调查管理</span>
+                </li>
+            </ul>
+        </div>
+
+        <div title="系统设置" data-options="iconCls:'icon-wrench'" style="padding:5px;">
+            &lt;!&ndash;<ul class="easyui-tree wu-side-tree">
+                <li iconCls="icon-users"><a href="javascript:void(0)" onclick="addTab('用户信息管理','userinfo.html')">用户信息管理</a></li>
+                <li iconCls="icon-cog"><a href="javascript:void(0)" onclick="addTab('组织机构管理管理','organ.html')">组织机构管理</a></li>
+                <li iconCls="icon-chart-organisation"><a href="javascript:void(0)" onclick="addTab('用户赋权管理','userrole.html')">用户赋权管理</a></li>
+               &lt;!&ndash; <li iconCls="icon-book"><a href="javascript:void(0)" onclick="addTab('人员管理','updatelanmu.html')">人员信息</a></li>
+                <li iconCls="icon-user-group"><a href="javascript:void(0)" onclick="addTab('菜单管理','roletree.html')">菜单信息</a></li>&ndash;&gt;
+            </ul>&ndash;&gt;
+            <ul class="easyui-tree" id="tree2"  lines="true">
+                <li>
+                    <span>组织机构管理</span>
+                </li>
+                <li>
+                    <span>用户管理</span>
+                </li>
+                <li>
+                    <span>角色管理</span>
+                </li>
+                <li>
+                    <span>权限管理</span>
+                </li>
+            </ul>
+        </div>-->
+
+    </div>
+</div>
+
+<div class="wu-main" data-options="region:'center'">
+    <div id="wu-tabs" class="easyui-tabs" data-options="border:false,fit:true">
+        <div title="首 页" style="padding: 20px; ">
+            <div id="calendar" style="width:450px;height:450px;"></div>
+        </div>
+    </div>
+</div>
+
+<div id="tabsMenu" class="easyui-menu" style="width:120px;">
+    <div name="close">关闭</div>
+    <div name="Other">关闭其他</div>
+    <div name="All">关闭所有</div>
+</div>
+
+<div class="wu-footer" data-options="region:'south',border:true,split:true">
+   <!-- &copy; 上海市交通委员会科技信息中心-->
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        addTab('价格指数分析','jgzsfx.html')
+        $('#calendar').calendar({
+            current:new Date(),
+            weeks:['星期天','星期一','星期二','星期三','星期四','星期五','星期六'],
+            months:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+        });
+
+
+    });
+
+
+
+    function addTab(title, url){
+        if ($('#wu-tabs').tabs('exists', title)){
+            $('#wu-tabs').tabs('select', title);
+        } else {
+            var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+            $('#wu-tabs').tabs('add',{
+                title:title,
+                content:content,
+                closable:true,
+            });
+        }
+    }
+
+</script>
+</body>
+</html>

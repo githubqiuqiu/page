@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="css/wu.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtCss.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtIcon.css" />
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script >
+        function add(){
+            window.location.href='updatelanmu.html';
+        }
+    </script>
+
+</head>
+
+
+<body >
+<div class="easyui-layout" data-options="fit:true">
+    <div class="easyui-layout" data-options="fit:true">
+        <div class="search-condition" title="查询条件" region="north" border="false" style="height:100px; padding-top: 20px" >
+            <form method="post" id="searchForm">
+                &nbsp; &nbsp; &nbsp;
+                时间:
+                <select style="width: 100px">
+                    <option>2018</option>
+                    <option>2017</option>
+                </select>
+                <select style="width: 100px">
+                    <option>12</option>
+                    <option>11</option>
+                    <option>10</option>
+                    <option>9</option>
+                    <option>8</option>
+                    <option>7</option>
+                    <option>6</option>
+                    <option>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                    <option>2</option>
+                    <option>1</option>
+                </select>
+
+                <a class="easyui-linkbutton" id="searchBtn" data-options="iconCls:'icon-search'"> 查询 </a>&nbsp;&nbsp;
+                <a class="easyui-linkbutton" id="searchBtn1" data-options="iconCls:'icon-reload'">重置</a>
+                <a class="easyui-linkbutton" id="searchBtn2" data-options="iconCls:'icon-print'">导出</a>
+
+            </form>
+        </div>
+    <div region="center" border="false" style="margin:3px 0" >
+        <div class="gridTool" id="tb">
+            <a class="easyui-linkbutton" iconCls="icon-add" plain="true" id="addBtn" onclick="add()">新增</a>&nbsp;|&nbsp;
+            <a class="easyui-linkbutton" iconCls="icon-remove" plain="true" id="removeBtn">删除</a>&nbsp;&nbsp;
+        </div>
+
+        <table id="tt" class="easyui-datagrid"
+               data-options=" fitColumns:true"
+               iconCls="icon-save"
+               rownumbers="true" pagination="true"
+               toolbar="#tb">
+            <thead>
+            <tr>
+                <th data-options="field:'ck',checkbox:true" width="100px"></th>
+                <th field="userloginname" align="center" width="100px">表名</th>
+                <th field="userrealname" align="center" width="100px">字段名</th>
+                <th field="organname" align="center" width="100px" >12月</th>
+                <th field="userstatus" align="center" width="100px" >11月</th>
+                <th field="createdate" align="center" width="100px">10月</th>
+
+            </tr>
+            <tbody>
+            <tr>
+                <td></td>
+                <td>业务行业信息(陆)</td>
+                <td>注册机构</td>
+                <td>8049</td>
+                <td>8049</td>
+                <td>8049</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>业户行业信息(陆)</td>
+                <td>经营地址所在行政区</td>
+                <td>1</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>车辆基本信息</td>
+                <td>车牌号码</td>
+                <td>151</td>
+                <td>164</td>
+                <td>159</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>人员证件资格类别信息</td>
+                <td>从业资格类别状态</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>人员从业资格证件信息</td>
+                <td>资格证照状态</td>
+                <td>1024</td>
+                <td>1272</td>
+                <td>3246</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>业户基本信息(陆)</td>
+                <td>业户名称</td>
+                <td>12</td>
+                <td>32</td>
+                <td>23</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>业户基本信息(陆)</td>
+                <td>经营范围名称</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>业户基本信息(陆)</td>
+                <td>对象ID</td>
+                <td>10</td>
+                <td>28</td>
+                <td>46</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>业户基本信息(陆)</td>
+                <td>管理机构</td>
+                <td>12</td>
+                <td>14</td>
+                <td>16</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>业户基本信息(陆)</td>
+                <td>证件有效期起</td>
+                <td>24</td>
+                <td>22</td>
+                <td>34</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>人员基本信息</td>
+                <td>人员名称</td>
+                <td>1024</td>
+                <td>1272</td>
+                <td>3246</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>车辆基本信息</td>
+                <td>牌照颜色</td>
+                <td>227</td>
+                <td>272</td>
+                <td>246</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>业户基本信息(陆)</td>
+                <td>管理机构</td>
+                <td>1024</td>
+                <td>1272</td>
+                <td>3246</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>人员基本信息</td>
+                <td>人员名称</td>
+                <td>102</td>
+                <td>127</td>
+                <td>324</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>人员基本信息</td>
+                <td>人员编号</td>
+                <td>1024</td>
+                <td>1272</td>
+                <td>3246</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>人员基本信息</td>
+                <td>人员性别</td>
+                <td>124</td>
+                <td>172</td>
+                <td>346</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>人员基本信息</td>
+                <td>人员状态</td>
+                <td>104</td>
+                <td>122</td>
+                <td>326</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>人员基本信息</td>
+                <td>人员编号</td>
+                <td>24</td>
+                <td>72</td>
+                <td>46</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>人员基本信息</td>
+                <td>经营地址</td>
+                <td>14</td>
+                <td>12</td>
+                <td>36</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>人员基本信息</td>
+                <td>人员名称</td>
+                <td>1024</td>
+                <td>1272</td>
+                <td>3246</td>
+            </tr>
+
+            </tbody>
+            </thead>
+        </table>
+    </div>
+</div>
+</div>
+</body>
+</html>

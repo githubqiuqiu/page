@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://index.0256.cn/expx.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>公路物流运价指数</title>
+    <meta http-equiv="keywords" content="公路物流运价指数">
+    <meta http-equiv="description" content="公路物流运价指数">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <script type="text/javascript" src="js/page1/WdatePicker.js"></script>
+    <link href="js/page1/WdatePicker.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/page1/common.css">
+    <link rel="stylesheet" type="text/css" href="js/page1/exponent.css">
+    <link rel="stylesheet" type="text/css" href="js/page1/gol_wlzs.css">
+    <link rel="stylesheet" type="text/css" href="js/page1/common(1).css">
+    <link rel="stylesheet" type="text/css" href="js/page1/style.css">
+    <!--<script type="text/javascript" src="js/page1/jquery-form.js"></script>-->
+    <script type="text/javascript" src="js/page1/jquery-min.js"></script>
+    <script type="text/javascript" src="js/page1/XYTipsWindow.min.js"></script>
+    <script type="text/javascript" src="js/page1/echarts.js"></script>
+    <script type="text/javascript" src="js/page1/mychart.js"></script>
+    <script type="text/javascript" src="js/page1/common.js"></script>
+    <!--<script type="text/javascript" src="js/page1/exp_index.js"></script>-->
+    <link rel="shortcut icon" href="http://index.0256.cn/favicon.ico">
+    <link rel="bookmark" href="http://index.0256.cn/favicon.ico">
+    <script data-require-id="echarts/chart/line" src="js/page1/line.js" async=""></script></head>
+<body>
+<style>
+    a.bi_location_add{float:left; display:inline; width:34px; height:35px; background:url(/r/cms/www/red/images4/common_sprite.png) -6px -140px no-repeat; margin:25px 15px 0px 0px;}
+    a.bi_location_add:hover{background-position:-6px -100px;}
+    h2.bi_loaction_city{ float:left; display:inline; font-size:50px;line-height: 50px; color:#1e3883; font-weight:normal;margin-top:10px;}
+</style>
+
+<!--导航结束-->
+<script type="text/javascript">
+    var href = location.href;
+    if(href.indexOf("guangdong")>0||href.indexOf("gdexpx")>0||href.indexOf("gdvolumex")>0||href.indexOf("gdpricex")>0) {
+        $("#toggle").text("广东");
+        $(".headIn-ul").find("a").eq(0).attr("href","guangdong.htm");
+        $(".headIn-ul").find("a").eq(1).attr("href","gdexpx.htm");
+        $(".headIn-ul").find("a").eq(2).attr("href","gdvolumex.htm");
+    }
+    function switchProvince (index) {
+        var tagid = $("#tagid").val();
+        if(index==0) {
+            location.href = "/";
+        } else {
+            location.href = "guangdong.htm";
+        }
+    }
+
+    function back(){
+        window.location.href="jgzsfx.html";
+    }
+
+    function tb1(){
+
+        var myChart = echarts.init(document.getElementById('main'));
+
+        var base = +new Date(2016,5, 3);
+
+        var oneDay = 24 * 3600 * 1000;
+        var date = [];
+        var date1 = [];
+        var date2 = [];
+        var data = [Math.random() * 300];
+        var data1 = [Math.random() * 300];
+        var data2 = [Math.random() * 300];
+        for (var i = 1; i < 1000; i++) {
+            var now = new Date(base += oneDay);
+            date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
+            data.push(Math.round((Math.random()-0.5 ) * 20 + data[i - 1]));
+            date1.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
+            data1.push(Math.round((Math.random()-0.5 ) * 20 + data[i - 1]));
+            date2.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
+            data2.push(Math.round((Math.random()-0.5 ) * 20 + data[i - 1]));
+        }
+
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                position: function (pt) {
+                    return [pt[0], '10%'];
+                }
+            },
+            title: {
+                left: 'center',
+                text: '',
+            },
+             legend: {
+                 data:['整车指数','零担重货指数','零担轻货指数']
+             },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: date
+            },
+            yAxis: {
+                type: 'value',
+                boundaryGap: [0, '100%']
+            },
+            dataZoom: [{
+                type: 'inside',
+                start: 0,
+                end: 10
+            }, {
+                start: 0,
+                end: 10,
+                handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                handleSize: '80%',
+                handleStyle: {
+                    color: '#fff',
+                    shadowBlur: 3,
+                    shadowColor: 'rgba(0, 0, 0, 0.6)',
+                    shadowOffsetX: 2,
+                    shadowOffsetY: 2
+                }
+            }],
+            series: [
+                {
+                    name:'整车指数',
+                    type:'line',
+                    stack: '总量',
+                    data:data
+                },
+                {
+                    name:'零担重货指数',
+                    type:'line',
+                    stack: '总量',
+                    data:data1
+                },
+                {
+                    name:'零担轻货指数',
+                    type:'line',
+                    stack: '总量',
+                    data:data2
+                }
+            ]
+            /*series: [
+                {
+                    name:'模拟数据',
+                    type:'line',
+                    smooth:true,
+                    symbol: 'none',
+                    sampling: 'average',
+                    itemStyle: {
+                        color: 'rgb(255, 70, 131)'
+                    },
+                    areaStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgb(255, 158, 68)'
+                        }, {
+                            offset: 1,
+                            color: 'rgb(255, 70, 131)'
+                        }])
+                    },
+                    data: data
+                }
+            ]*/
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }
+
+    function change(){
+        tb1();
+    }
+</script>
+
+<!-- banner内容区 -->
+<div>
+   <!-- <img src="js/page1/w_toppic.jpg" style="width: 100%; min-width: 1002px; max-height: 260px" alt="">-->
+</div>
+<!-- /banner内容区 -->	<!--运价指数查询开始-->
+<div class="w_yjzs_w1002">
+    <div class="w_yjzs_div1_l">运价指数查询</div>
+    <div class="w_yjzs_div1_r">反映公路物流运输供应与需求的“晴雨表”</div>
+</div>
+<div class="zoSearch2">
+    <div class="shensuo">
+        <img src="js/page1/secha1.png" alt="">
+    </div>
+</div>
+<div class="outSearch">
+    <!-- 搜索 -->
+    <div class="zoSearch">
+        <div class="shensuo">
+            <img src="js/page1/secha.png" alt="">
+        </div>
+        <div class="sct1">
+            <div class="yjzuo fl">运价指数</div>
+            <div class="sct1_xla fr">
+                <div class="yjyou">成都-银川</div>
+                <div class="sctUlout">
+                    <div class="sct1_ximg"></div>
+                    <ul class="sct1_ul">
+                        <li class="clicked">运价总指数</li>
+                        <li>大类指数</li>
+                        <li>物流区域指数</li>
+                        <li>节点城市指数</li>
+                        <li>运输线路指数</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="zsFgroud">
+            <form action="http://index.0256.cn/expcenter_trend.action" id="queryform" method="post">
+                <input type="hidden" name="marketId" id="marketId" value="1">
+                <input type="hidden" name="attribute1" id="type" value="5">
+                <input type="hidden" name="exponentTypeId" id="expTypeId" value="2">
+                <!-- 运价总指数 -->
+                <div class="zsFind">
+
+                </div>
+                <!-- 大类指数 -->
+                <div class="zsFind" style="display:none;">
+                    <div class="starTime sct2">
+                        <select name="cateId" class="inp1" id="selCateId">
+                            <option value="2" onclick="tb1()">整车运输</option>
+                            <option value="3">零担重货</option>
+                            <option value="4">零担轻货</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- 物流区域指数 -->
+                <div class="zsFind" style="display:none;">
+                    <div class="starTime sct2">
+                        <select class="inp1" id="area" name="attribute2">
+                            <option value="华北">华北</option>
+                            <option value="东北">东北</option>
+                            <option value="山东半岛">山东半岛</option>
+                            <option value="长三角">长三角</option>
+                            <option value="东南沿海">东南沿海</option>
+                            <option value="西北">西北</option>
+                            <option value="西南">西南</option>
+                            <option value="华中">华中</option>
+                            <option value="珠三角">珠三角</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- 节点城市指数 -->
+                <div class="zsFind" style="display:none;">
+                    <div class="starTime sct2"><input class="inp1" type="text" onclick="showhidediv(this);" id="city" name="city" readonly="readonly" placeholder="节点城市"></div>
+                </div>
+                <!-- 运输线路指数 -->
+                <div class="zsFind" style="display:none;">
+                    <div class="sct3">
+                        <input class="sinp1 fl" type="text" id="startLine" name="startLine" onclick="showhidediv(this);" readonly="readonly" placeholder="起始地">
+                        <input class="sinp1 sinp2 fl" type="text" id="endLine" name="endLine" onclick="showhidediv(this);" readonly="readonly" placeholder="目的地">
+                    </div>
+                </div>
+            </form>
+            <div class="sct3">
+                <input class="sinp1 fl" type="text" onclick="WdatePicker()" readonly="readonly" name="startDate1" id="startDate" placeholder="起始时间">
+                <input class="sinp1 sinp2 fl" type="text" onclick="WdatePicker()" readonly="readonly" name="endDate1" id="endDate" placeholder="截止时间">
+            </div>
+            <button class="sctBtn" onclick="queryFormSubmit();" id="submitButton">立即查询</button>
+        </div>
+
+    </div>
+    <!-- 搜索结束 -->
+</div>
+
+
+<div class="w_i_clr"></div>
+
+<div class="w_yjzs_w1002 w_yjzs_div5">
+    <div class="w_yjzs_div5_next w_yjzs_div5_on" id="selExpTypeId2" onclick="selectExpType(2)">周指数</div>
+    <div class="w_yjzs_div5_next" id="selExpTypeId3" onclick="change()">月指数</div>
+    <div class="w_yjzs_div5_next" id="selExpTypeId4" onclick="change()">季度指数</div>
+    <div class="w_yjzs_div5_last" id="selExpTypeId5" onclick="back()">年度指数</div>
+</div>
+
+<div class="w_i_clr"></div>
+
+<div class="w_yjzs_w1002">
+    <div class="w_yjzs_div6" id="trendDesc"><div class="w_i_jgzs_3_1_son"><div class="w_i_jgzs_3_bt">成都-银川</div><div class="w_i_jgzs_3_bt">指数：<span style="color:green;">966.08</span></div><div class="w_i_jgzs_3_bt">环比涨跌幅：<img src="js/page1/arrow_down.png" style="height:13px; "><span style="color:green;">-0.04<span></span></span></div><div class="w_i_jgzs_3_bt">时间：2018-12-19</div></div></div>
+</div>
+
+<div class="w_i_clr"></div>
+
+<div class="w_yjzs_w1002">
+    <div id="echarts" style="width: 1000px; height: 348px; margin: 0px auto; -webkit-tap-highlight-color: transparent; user-select: none; background-color: rgba(0, 0, 0, 0);" _echarts_instance_="1545704632453"><div style="position: relative; overflow: hidden; width: 1000px; height: 348px;"><div data-zr-dom-id="bg" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 1000px; height: 348px; user-select: none;"></div>
+        <div  id="main" style="width: 1000px;height:348px;padding-left: 20px;padding-top: 25px"></div>
+        <!--<canvas width="1000" height="348" data-zr-dom-id="0" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 1000px; height: 348px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+        <canvas width="1000" height="348" data-zr-dom-id="1" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 1000px; height: 348px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>
+        <canvas width="1000" height="348" data-zr-dom-id="_zrender_hover_" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 1000px; height: 348px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas>-->
+    </div>
+    </div>
+</div>
+
+<div class="w_i_clr"></div>
+
+<div class="w_yjzs_w1002">
+    <div class="w_yjzs_div1_l">指数数据表</div>
+    <div class="w_yjzs_div1_r2" id="expTitle">成都-银川</div>
+</div>
+
+<div class="w_i_clr"></div>
+
+<div class="w_yjzs_w1002">
+    <table id="resultTable"><thead><tr class="w_yjzs_tbtr1"><td>指数</td><td>环比</td><td>统计时间</td><td>统计周期</td><td>发布时间</td></tr></thead><tbody><tr><td><span style="">966.08 </span></td><td><div style="width: 75px;height: 40px;margin: 0 auto;border: none;"><img src="js/page1/arrow_down.png" style="height:13px; "><span style="float: right;">-0.04%</span></div></td><td>2018 </td><td>51 </td><td>2018-12-19 </td></tr><tr><td><span>966.45 </span></td><td> <div style="width: 75px;height: 40px;margin: 0 auto;border: none;"><img src="js/page1/arrow_up.png" style="height:13px; margin-left: 3px;"><span style="float: right;">+0.16%</span></div></td><td>2018 </td><td>50 </td><td>2018-12-12 </td></tr><tr><td><span style="">964.94 </span></td><td><div style="width: 75px;height: 40px;margin: 0 auto;border: none;"><img src="js/page1/arrow_down.png" style="height:13px; "><span style="float: right;">-0.2%</span></div></td><td>2018 </td><td>49 </td><td>2018-12-05 </td></tr><tr><td><span>966.92 </span></td><td> <div style="width: 75px;height: 40px;margin: 0 auto;border: none;"><img src="js/page1/arrow_up.png" style="height:13px; margin-left: 3px;"><span style="float: right;">+0%</span></div></td><td>2018 </td><td>48 </td><td>2018-11-28 </td></tr><tr><td><span>966.9 </span></td><td> <div style="width: 75px;height: 40px;margin: 0 auto;border: none;"><img src="js/page1/arrow_up.png" style="height:13px; margin-left: 3px;"><span style="float: right;">+0%</span></div></td><td>2018 </td><td>47 </td><td>2018-11-21 </td></tr><tr><td><span style="">966.92 </span></td><td><div style="width: 75px;height: 40px;margin: 0 auto;border: none;"><img src="js/page1/arrow_down.png" style="height:13px; "><span style="float: right;">-0.01%</span></div></td><td>2018 </td><td>46 </td><td>2018-11-14 </td></tr><tr><td><span>967.06 </span></td><td> <div style="width: 75px;height: 40px;margin: 0 auto;border: none;"><img src="js/page1/arrow_up.png" style="height:13px; margin-left: 3px;"><span style="float: right;">+1.41%</span></div></td><td>2018 </td><td>45 </td><td>2018-11-07 </td></tr><tr><td><span>953.58 </span></td><td> <div style="width: 75px;height: 40px;margin: 0 auto;border: none;"><img src="js/page1/arrow_up.png" style="height:13px; margin-left: 3px;"><span style="float: right;">+0.01%</span></div></td><td>2018 </td><td>44 </td><td>2018-10-31 </td></tr><tr><td><span>953.5 </span></td><td> <div style="width: 75px;height: 40px;margin: 0 auto;border: none;"><img src="js/page1/arrow_up.png" style="height:13px; margin-left: 3px;"><span style="float: right;">+0.01%</span></div></td><td>2018 </td><td>43 </td><td>2018-10-24 </td></tr><tr><td><span style="">953.36 </span></td><td><div style="width: 75px;height: 40px;margin: 0 auto;border: none;"><img src="js/page1/arrow_down.png" style="height:13px; "><span style="float: right;">-0.01%</span></div></td><td>2018 </td><td>42 </td><td>2018-10-17 </td></tr></tbody></table>
+</div>
+
+<div class="w_i_clr"></div>
+
+<div class="w_yjzs_w1002">
+    <div class="w_page w_yjzs_div7" id="pagerDiv">
+        <!--如果当前是首页加上disabled="disabled"，如果是最后一页，在尾页加上disabled="disabled" ,并且样式改为w_page_btn2-->
+        <input type="button" value="首页" disabled="disabled" onclick="firstPage()" id="firstPage" class="w_page_btn2"> <input type="button" value="上页" onclick="prePage()" id="prePage" class="w_page_btn2" disabled="disabled"> <input type="text" value="1" style="text-align: center;cursor:default;" id="pageNumber" onkeydown="priceInputOnKeyup()" class="w_page_txt"><input type="button" value="GO" onclick="jumpPage()" class="w_page_go">
+        <input type="button" value="下页" onclick="nextPage()" id="nextPage" class="w_page_btn"> <input type="button" value="尾页" onclick="lastPage()" id="lastPage" class="w_page_btn">
+    </div>
+    <div class="w_page w_yjzs_div7_r" id="dataDesc">总共有154条数据 共16页</div>
+</div>
+<div class="w_i_clr"></div>
+
+<div class="reTotop"></div>
+
+
+
+
+<script>
+    showcity(2, this);
+    var preEle;
+    function showhidediv(e) {
+        $("#tcdiv").css("top", $(e).offset().top);
+        $("#tcdiv").css("left", (document.body.scrollWidth - 500) / 2);
+        $("#tcdiv").show();
+        preEle = e;
+    }
+    function hidediv() {
+        $("#tcdiv").hide();
+    }
+
+    function showcity(i, e) {
+        $(".tcdiv_bt").removeClass("tcdiv_bt_on");
+        $(e).addClass("tcdiv_bt_on");
+        $(".tcdiv_ul").hide();
+        $("#tcdiv_ul" + i).show();
+    }
+    function selCity(e) {
+        $(preEle).val($(e).html());
+        $(preEle), focus();
+        hidediv();
+    }
+</script>	 <script type="text/javascript">
+    var level = sessionStorage.getItem("level");
+    var expName = sessionStorage.getItem("expName");
+    sessionStorage.removeItem("level");
+    sessionStorage.removeItem("expName");
+    $(function(){
+        tb1();
+
+        $('.sct1_xla ul li').click(function(e) {
+            preType = 5-($(this).index());
+            $("#type").val(preType);
+            $(this).addClass('clicked').siblings().removeClass('clicked');
+            $('.zsFgroud .zsFind').eq($(this).index()).show().siblings().hide();
+            //赋值操作
+            var aHtml = $(this).html();
+            $('.yjyou').html(aHtml);
+            //点击之后 ul隐藏
+            $('.sctUlout').hide();
+        });
+
+        $('.yjyou').click(function(e) {
+            $('.sctUlout').show();
+        });
+
+        //鼠标离开大盒子 也让ul消失
+        $('.sct1_xla').mouseleave(function(e) {
+            $('.sctUlout').hide();
+        });
+
+
+        //////
+        $('.zoSearch .shensuo').click(function(){
+            $('.outSearch .zoSearch').hide();
+        });
+        $('.zoSearch2 .shensuo').click(function(){
+            $('.outSearch .zoSearch').show();
+        });
+        //输入框
+        $(".starTime input,.sct3 input").bind('focus',function(){
+            $(this).css("backgroundColor","#eff1f8");
+        }).bind('blur',function(){
+            $(this).css("backgroundColor","#fff");
+        });
+
+        ////////////////////////////
+        $(window).scroll(function(e) {
+            //如果用户滚动条的距离大于一个屏幕的高度，我们才让小火箭出现
+            if($(window).scrollTop() > $(window).height()){
+                $('.reTotop').show();
+            }else{
+                $('.reTotop').hide();
+            }
+        });
+        //点击时，滚动条距离为0，回到顶端
+        $('.reTotop').click(function(e) {
+            $('body,html').animate({'scrollTop':'0'},500);
+        });
+
+        if(level&&expName) {
+            level = 5 - level|0;
+            $('.sct1_xla ul li').eq(level).click();
+            switch (level) {
+                case 1 :var val = (expName=="整车"?2:expName="零担重货"?3:4);$('#selCateId').val(val);break;
+                case 2 :$('#area').val(expName);break;
+            }
+
+        }
+        //queryFormSubmit();
+    });
+
+</script>
+
+
+</body></html>

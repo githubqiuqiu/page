@@ -1,0 +1,38 @@
+.slide .mark{
+    width:12px;
+    height:7px;
+    background:url(img/time/mark.png) no-repeat;
+    margin-left:-5px;
+    margin-top:8px;
+}
+.slide .marks {
+    height:6px;
+    border-bottom:#d54f39 solid 1px;
+    margin-top:10px;
+}
+.slide .line {
+    height:8px;
+}
+/*.slide .line span{border-left:#669bb2 solid 1px;border-bottom:#669bb2 solid 1px;   display:block; float:left; height:5px; }*/
+
+
+.slide .line span{border-left:#cbcbcb solid 2px;border-bottom:#cbcbcb solid 2px;   display:block; float:left; height:5px; }
+.slide .time li{float:left; font-size:10px; list-style:none; cursor:pointer; height: 20px;}
+.slide .time li:hover{text-decoration:underline;font-weight:bold;}
+.slide .time{
+    margin:0px;
+    padding:0px;
+    height:13px;
+}
+
+
+/*play*/
+
+.startplay{background:url(img/time/img/startplay.png) no-repeat -4px 0px;}
+.startplay:hover{background:url(img/time/img/startplay.png) no-repeat -4px -40px}
+.pause{background:url(img/time/img/startplay.png) no-repeat -4px -80px;}
+.pause:hover{background:url(img/time/img/startplay.png) -4px -120px;}
+/*.playbtn{position:relative;top:30px;left:0px;height:0px;}*/
+
+.playbtn{width: 29px; height: 27px; float: left; display: block; margin: 8px 7px 0px -10px;}
+.playbtn  a{width: 29px; height: 27px; float: left; display: block;}

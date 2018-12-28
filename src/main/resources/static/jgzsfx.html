@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://index.0256.cn/?tdsourcetag=s_pctim_aiomsg -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>公路物流运价指数</title>
+    <meta http-equiv="keywords" content="公路物流运价指数">
+    <meta http-equiv="description" content="公路物流运价指数">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" type="text/css" href="js/page1/common.css">
+    <link rel="stylesheet" href="js/page1/swiper.min.css">
+    <script src="js/page1/swiper.min.js"></script>
+    <script type="text/javascript" src="js/page1/WdatePicker.js"></script>
+    <link href="js/page1/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/page1/jquery-min.js"></script>
+    <script type="text/javascript" src="js/page1/jquery-form.js"></script>
+    <!--<script type="text/javascript" src="js/page1/echarts.min.js"></script>-->
+    <!-- <script type="text/javascript" src="js/page1/mychart2.js"></script>-->
+    <!--<script type="text/javascript" src="js/page1/china.js"></script>-->
+    <!-- <script type="text/javascript" src="js/page1/XYTipsWindow.min.js"></script>
+     <script type="text/javascript" src="js/page1/mychart.js"></script>
+     <script type="text/javascript" src="js/page1/echarts.js"></script>
+     <script type="text/javascript" src="js/page1/index.js"></script>-->
+    <!--<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>-->
+    <script type="text/javascript" src="js/page1/echarts.min.js"></script>
+    <script type="text/javascript" src="js/page1/ecStat.min.js"></script>
+    <script type="text/javascript" src="js/page1/dataTool.min.js"></script>
+    <script type="text/javascript" src="js/page1/china.js"></script>
+    <script type="text/javascript" src="js/page1/world.js"></script>
+    <script type="text/javascript" src="js/page1/api.js"></script>
+    <script type="text/javascript" src="js/page1/bmap.min.js"></script>
+    <script type="text/javascript" src="js/page1/simplex.js"></script>
+
+
+<body >
+<style>
+    a.bi_location_add{float:left; display:inline; width:34px; height:35px; background:url(js/page1/common_sprite.png) -6px -140px no-repeat; margin:25px 15px 0px 0px;}
+    a.bi_location_add:hover{background-position:-6px -100px;}
+    h2.bi_loaction_city{ float:left; display:inline; font-size:50px;line-height: 50px; color:#1e3883; font-weight:normal;margin-top:10px;}
+</style>
+
+<!--导航结束-->
+<script type="text/javascript">
+    function tb1(){
+        var myChart = echarts.init(document.getElementById('main'));
+        var base = +new Date(2016, 5, 3);
+        var oneDay = 24 * 3600 * 1000;
+        var date = [];
+        var date1 = [];
+        var date2 = [];
+        var data = [Math.random() * 300];
+        var data1 = [Math.random() * 300];
+        var data2 = [Math.random() * 300];
+        for (var i = 1; i < 1000; i++) {
+            var now = new Date(base += oneDay);
+            date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
+            data.push(Math.round((Math.random()-0.5 ) * 20 + data[i - 1]));
+            date1.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
+            data1.push(Math.round((Math.random()-0.5 ) * 20 + data[i - 1]));
+            date2.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
+            data2.push(Math.round((Math.random()-0.5 ) * 20 + data[i - 1]));
+        }
+        option = {
+            tooltip: {
+                trigger: 'axis',
+                position: function (pt) {
+                    return [pt[0], '10%'];
+                }
+            },
+            title: {
+                left: 'center',
+                text: '',
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: date
+            },
+            yAxis: {
+                type: 'value',
+                boundaryGap: [0, '100%']
+            },
+            dataZoom: [{
+                type: 'inside',
+                start: 0,
+                end: 10
+            }, {
+                start: 0,
+                end: 10,
+                handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                handleSize: '80%',
+                handleStyle: {
+                    color: '#fff',
+                    shadowBlur: 3,
+                    shadowColor: 'rgba(0, 0, 0, 0.6)',
+                    shadowOffsetX: 2,
+                    shadowOffsetY: 2
+                }
+            }],
+            series: [
+                {
+                    name:'定基',
+                    type:'line',
+                    stack: '总量',
+                    data:data
+                },
+                {
+                    name:'同比',
+                    type:'line',
+                    stack: '总量',
+                    data:data1
+                },
+                {
+                    name:'环比',
+                    type:'line',
+                    stack: '总量',
+                    data:data2
+                }
+            ]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }
+    function change(target,value,cls,type){
+        $(target).addClass(cls).siblings().removeClass(cls);
+        tb1();
+    }
+
+    function tb2(){
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+
+        var data = [
+            {name: '武汉', value: 273},
+            {name: '上海', value: 250},
+            {name: '成都', value: 300},
+        ];
+
+        var geoCoordMap = {
+            '武汉':[114.31,30.52],
+            '上海':[121.48,31.22],
+            '成都':[104.06,30.67],
+        };
+        var convertData = function (data) {
+            var res = [];
+            for (var i = 0; i < data.length; i++) {
+                var geoCoord = geoCoordMap[data[i].name];
+                if (geoCoord) {
+                    res.push({
+                        name: data[i].name,
+                        value: geoCoord.concat(data[i].value)
+                    });
+                }
+            }
+            return res;
+        };
+        option = {
+            // backgroundColor: '#404a59',
+            title: {
+                text: '区域物流价格指数',
+                //subtext: 'data from PM25.in',
+                //sublink: 'http://www.pm25.in',
+                left: 'center',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+            tooltip : {
+                trigger: 'item'
+            },
+            bmap: {
+                center: [104.114129, 37.550339],
+                zoom: 5,
+                roam: true,
+                mapStyle: {
+                    styleJson: [
+                        {
+                            "featureType": "water",
+                            "elementType": "all",
+                            "stylers": {
+                                "color": "#044161"
+                            }
+                        },
+                        {
+                            "featureType": "land",
+                            "elementType": "all",
+                            "stylers": {
+                                "color": "#004981"
+                            }
+                        },
+                        {
+                            "featureType": "boundary",
+                            "elementType": "geometry",
+                            "stylers": {
+                                "color": "#064f85"
+                            }
+                        },
+                        {
+                            "featureType": "railway",
+                            "elementType": "all",
+                            "stylers": {
+                                "visibility": "off"
+                            }
+                        },
+                        {
+                            "featureType": "highway",
+                            "elementType": "geometry",
+                            "stylers": {
+                                "color": "#004981"
+                            }
+                        },
+                        {
+                            "featureType": "highway",
+                            "elementType": "geometry.fill",
+                            "stylers": {
+                                "color": "#005b96",
+                                "lightness": 1
+                            }
+                        },
+                        {
+                            "featureType": "highway",
+                            "elementType": "labels",
+                            "stylers": {
+                                "visibility": "off"
+                            }
+                        },
+                        {
+                            "featureType": "arterial",
+                            "elementType": "geometry",
+                            "stylers": {
+                                "color": "#004981"
+                            }
+                        },
+                        {
+                            "featureType": "arterial",
+                            "elementType": "geometry.fill",
+                            "stylers": {
+                                "color": "#00508b"
+                            }
+                        },
+                        {
+                            "featureType": "poi",
+                            "elementType": "all",
+                            "stylers": {
+                                "visibility": "off"
+                            }
+                        },
+                        {
+                            "featureType": "green",
+                            "elementType": "all",
+                            "stylers": {
+                                "color": "#056197",
+                                "visibility": "off"
+                            }
+                        },
+                        {
+                            "featureType": "subway",
+                            "elementType": "all",
+                            "stylers": {
+                                "visibility": "off"
+                            }
+                        },
+                        {
+                            "featureType": "manmade",
+                            "elementType": "all",
+                            "stylers": {
+                                "visibility": "off"
+                            }
+                        },
+                        {
+                            "featureType": "local",
+                            "elementType": "all",
+                            "stylers": {
+                                "visibility": "off"
+                            }
+                        },
+                        {
+                            "featureType": "arterial",
+                            "elementType": "labels",
+                            "stylers": {
+                                "visibility": "off"
+                            }
+                        },
+                        {
+                            "featureType": "boundary",
+                            "elementType": "geometry.fill",
+                            "stylers": {
+                                "color": "#029fd4"
+                            }
+                        },
+                        {
+                            "featureType": "building",
+                            "elementType": "all",
+                            "stylers": {
+                                "color": "#1a5787"
+                            }
+                        },
+                        {
+                            "featureType": "label",
+                            "elementType": "all",
+                            "stylers": {
+                                "visibility": "off"
+                            }
+                        }
+                    ]
+                }
+            },
+            series : [
+                {
+                    name: 'pm2.5',
+                    type: 'scatter',
+                    coordinateSystem: 'bmap',
+                    data: convertData(data),
+                    symbolSize: function (val) {
+                        return val[2] / 10;
+                    },
+                    label: {
+                        normal: {
+                            formatter: '{b}',
+                            position: 'right',
+                            show: false
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#ddb926'
+                        }
+                    }
+                },
+                {
+                    // name: 'Top 5',
+                    type: 'effectScatter',
+                    coordinateSystem: 'bmap',
+                    data: convertData(data.sort(function (a, b) {
+                        return b.value - a.value;
+                    }).slice(0, 6)),
+                    symbolSize: function (val) {
+                        return val[2] / 10;
+                    },
+                    showEffectOn: 'emphasis',
+                    rippleEffect: {
+                        brushType: 'stroke'
+                    },
+                    hoverAnimation: true,
+                    label: {
+                        normal: {
+                            formatter: '{b}',
+                            position: 'right',
+                            show: true
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color: '#f4e925',
+                            shadowBlur: 10,
+                            shadowColor: '#333'
+                        }
+                    },
+                    zlevel: 1
+                },
+                {
+                    type: 'custom',
+                    coordinateSystem: 'bmap',
+                    renderItem: renderItem,
+                    itemStyle: {
+                        normal: {
+                            opacity: 0.5
+                        }
+                    },
+                    animation: false,
+                    silent: true,
+                    data: [0],
+                    z: -10
+                }
+            ]
+        };
+
+        myChart.setOption(option, true);
+        //echart点击事件
+        myChart.on('click', function(param) {
+            //重要的参数都在这 param
+            $("#cs").html( param.name);
+        });
+    }
+    function renderItem(params, api) {
+        var coords = [
+            [116.7,39.53],
+            [103.73,36.03],
+            [112.91,27.87],
+            [120.65,28.01],
+            [119.57,39.95]
+        ];
+        var points = [];
+        for (var i = 0; i < coords.length; i++) {
+            points.push(api.coord(coords[i]));
+        }
+        var color = api.visual('color');
+
+        return {
+            type: 'polygon',
+            shape: {
+                points: echarts.graphic.clipPointsByRect(points, {
+                    x: params.coordSys.x,
+                    y: params.coordSys.y,
+                    width: params.coordSys.width,
+                    height: params.coordSys.height
+                })
+            },
+            style: api.style({
+                fill: color,
+                stroke: echarts.color.lift(color)
+            })
+        };
+    }
+
+
+</script>
+
+<div class="com2">
+    <!-- 运价指数开始 -->
+    <div class="com2In con2Volu">
+        <div class="swiper-container swiper-container-horizontal" id="swiper-container">
+            <div class="swiper-wrapper" id="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                <div class="swiper-slide volume1 swiper-slide-active" style="width: 1200px; margin-right: 2px;"><ul class="voluUl">
+                    <li onclick=""><div class="li1">
+                        <div class="li1-sp1 fl">总指数</div><div class="li1-sp3 fr">966.08</div></div>
+                        <div class="li2">环比值：999.62  涨跌幅：-0.04% </div></li><li onclick="">
+                    <div class="li1"><div class="li1-sp1 fl">零担轻货</div><div class="li1-sp3 fr">945.87</div></div><div class="li2">环比值：999.62  涨跌幅：-0.04% </div></li><li onclick=""><div class="li1">
+                    <div class="li1-sp1 fl">零担重货</div><div class="li1-sp3 fr">970.74</div></div><div class="li2">环比值：999.61  涨跌幅：-0.04% </div></li><li onclick=""><div class="li1"><div class="li1-sp1 fl">整车</div><div class="li1-sp3 fr">970.86</div></div><div class="li2">环比值：999.62  涨跌幅：-0.04% </div></li><li onclick=""><div class="li1"><div class="li1-sp1 fl">西南</div><div class="li1-sp2 fr">1070.79</div></div><div class="li2">环比值：1000.30  涨跌幅：0.03% </div></li></ul><a href="jgzscx.html" class="voluBtn">查询</a></div><div class="swiper-slide volume1 swiper-slide-next" style="width: 1200px; margin-right: 2px;"><ul class="voluUl"><li onclick=""><div class="li1"><div class="li1-sp1 fl">西南</div><div class="li1-sp3 fr">838.34</div></div><div class="li2">环比值：999.08  涨跌幅：-0.09% </div></li><li onclick=""><div class="li1"><div class="li1-sp1 fl">西北</div><div class="li1-sp3 fr">887.32</div></div><div class="li2">环比值：998.32  涨跌幅：-0.17% </div></li><li onclick="expxHtml()"><div class="li1"><div class="li1-sp1 fl">山东半岛</div><div class="li1-sp2 fr">994.20</div></div><div class="li2">环比值：1000.43  涨跌幅：0.04% </div></li><li onclick="expxHtml()"><div class="li1"><div class="li1-sp1 fl">华中</div><div class="li1-sp3 fr">976.11</div></div><div class="li2">环比值：999.76  涨跌幅：-0.02% </div></li><li onclick="expxHtml()"><div class="li1"><div class="li1-sp1 fl">华北</div><div class="li1-sp3 fr">974.98</div></div><div class="li2">环比值：999.82  涨跌幅：-0.02% </div></li></ul><a href="http://index.0256.cn/expx.htm" class="voluBtn">查询</a></div><div class="swiper-slide volume1" style="width: 1200px; margin-right: 2px;"><ul class="voluUl"><li onclick="expxHtml()"><div class="li1"><div class="li1-sp1 fl">东南沿海</div><div class="li1-sp3 fr">1044.15</div></div><div class="li2">环比值：999.58  涨跌幅：-0.04% </div></li><li onclick="expxHtml()"><div class="li1"><div class="li1-sp1 fl">东北</div><div class="li1-sp2 fr">859.93</div></div><div class="li2">环比值：1000.57  涨跌幅：0.06% </div></li><li onclick="expxHtml()"><div class="li1"><div class="li1-sp1 fl">长三角</div><div class="li1-sp3 fr">1155.82</div></div><div class="li2">环比值：999.44  涨跌幅：-0.06% </div></li></ul><a href="http://index.0256.cn/expx.htm" class="voluBtn">查询</a></div></div>
+
+            <!-- Add Arrows -->
+
+            <!--<div class="swiper-button-next" id="swiper-button-next" style="background:url(js/page1/rleft.png);background-size:100% 100%;width:25px;height:98px;cursor: pointer;margin-top:-50px;transform: rotate(180deg);margin-left: 50px;"></div>
+            <div class="swiper-button-prev swiper-button-disabled" id="swiper-button-prev" style="background:url(js/page1/rleft.png);background-size:100% 100%;width:25px;height:98px;cursor: pointer;margin-top:-50px;"></div>-->
+        </div>
+        <!-- 运价指数-地图 -->
+        <div class="voluMap">
+            <div class="map1 mapyj1 fl">
+                <div class="map1-t1">
+                    <div class="mt1">
+                        <div class="mt1-til fl" style="color:#ff6633"><span></span>运价指数</div>
+                        <div class="mt1-ti2 fr" style="position: relative;z-index: 100;">
+                            <span class="mtp1 tag-cloud" onclick="change(this,1,'tag-cloud','cateId')">周</span>
+                            <span class="mtp1" onclick="change(this,2,'tag-cloud','cateId')">月</span>
+                            <span class="mtp1" onclick="change(this,3,'tag-cloud','cateId')">季</span>
+                            <span class="mtp1" onclick="change(this,4,'tag-cloud','cateId')">年</span>
+                        </div>
+                    </div>
+                    <div class="mt2">
+                        <div class="mt2-t2 fr"><span></span>同比</div>
+                        <div class="mt2-t1 mt2-t3 fr"><span></span>环比</div>
+                        <div class="mt2-t1 fr"><span></span>定基</div>
+                    </div>
+                    <div class="mt3" style="display: -webkit-box !important;display: flex;position: relative;">
+                        <div class="mt3yj">
+                            <ul class="mt3jy-t1 fl" id="mu">
+                                <li class="tag-cloud" onclick="change(this,1,'tag-cloud','cateId')">总指数</li>
+                                <li onclick="change(this,2,'tag-cloud','cateId')">整车运输</li>
+                                <li onclick="change(this,3,'tag-cloud','cateId')">零担重货</li>
+                                <li onclick="change(this,4,'tag-cloud','cateId')">零担轻货</li>
+                            </ul>
+                            <div class="mt3jy-t2 fr" style="width: 460px; height: 260px; position: absolute; margin-left: 60px; margin-top: -60px; -webkit-tap-highlight-color: transparent; user-select: none; background-color: rgba(0, 0, 0, 0); cursor: default;" id="echarts" _echarts_instance_="1545644084934"><div style="position: relative; overflow: hidden; width: 460px; height: 260px;"><div data-zr-dom-id="bg" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 460px; height: 260px; user-select: none;"></div>
+                                <!--<div width="460" height="260" data-zr-dom-id="0" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 460px; height: 260px;  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>-->
+                                <!--<canvas width="460" height="260" data-zr-dom-id="1" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 460px; height: 260px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">456</canvas>-->
+                                <!--<canvas width="460" height="260" data-zr-dom-id="_zrender_hover_" class="zr-element" style="position: absolute; left: 0px; top: 0px; width: 460px; height: 260px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">789</canvas>-->
+                                <div  id="main" style="width: 440px;height:250px;padding-left: 20px;padding-top: 25px"></div>
+                                <div class="echarts-tooltip zr-element" style="position: absolute; display: none; border-style: solid; white-space: nowrap; transition: left 0.4s ease 0s, top 0.4s ease 0s; background-color: rgba(0, 0, 0, 0.7); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); padding: 5px; left: 334px; top: 114px;">2018-05-30<br>定基指数 : -<br>环比指数 : -<br>同比指数 : -</div></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map1-t1 mapp-t22" style="padding: 0 15px 0 15px;">
+                    <div class="fl" style="background: #fff;padding: 28px 15px 20px 15px;margin-left: -15px;">
+                        <div class="mt1">
+                            <div class="mt1-til fl"><span></span>运价行情</div>
+                            <div class="mt1-ti2 infPrice fr">
+                                <div class="mtp1 fl tag-cloud2" onclick="selectItem()">零担重货</div>
+                                <div class="mtp1 fl" onclick="selectItem()">零担轻货</div>
+                                <div class="mtp1 fl" onclick="selectItem()">整车9.6米</div>
+                                <div class="mtp1 fl" onclick="selectItem()">整车13米</div>
+                                <div class="mtp1 fl" onclick="selectItem()">整车17.5米</div>
+                            </div>
+                        </div>
+                        <div class="w_yjzs_w1002">
+                            <div class="w_gradent"></div>
+                            <table id="resultTable"><thead><tr class="w_yjzs_tbtr1"><td>运输方式</td><td>线路</td><td>报价企业</td><td>运价</td><td>环比</td><td>时间</td></tr></thead>
+                                <tbody>
+                                <tr><td>零担重货</td><td>广州-重庆</td><td>林安集团</td><td>¥471元/吨</td><td><img src="js/page1/up.png">+2.00%</td><td>2018-12-19</td></tr>
+                                <tr><td>零担重货</td><td>广州-拉萨</td><td>林安集团</td><td>¥1032元/吨</td><td><img src="js/page1/down.png">-1.00%</td><td>2018-12-19</td></tr>
+                                <tr><td>零担重货</td><td>广州-贵阳</td><td>林安集团</td><td>¥1088元/吨</td><td><img src="js/page1/up.png">+1.00%</td><td>2018-12-19</td></tr>
+                                <tr><td>零担重货</td><td>广州-昆明</td><td>林安集团</td><td>¥376元/吨</td><td><img src="js/page1/up.png">+5.00%</td><td>2018-12-19</td></tr>
+                                <tr><td>零担重货</td><td>广州-成都</td><td>林安集团</td><td>¥505元/吨</td><td><img src="js/page1/up.png">+10.00%</td><td>2018-12-19</td></tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="fl" style="width: 29px;height:303px;background: #fff;margin-left: -29px;position: relative;right: -29px;letter-spacing: 12px;word-wrap: break-word;">
+                        <div class="findPrice"><a href=""><img src="js/page1/pricef.png" alt="">更多运价查询&nbsp; </a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="map2 map2yunj fl">
+                <div class="map2Title">
+                    <div class="m2t1 fl">
+                        <img class="m2t1Btimg" src="js/page1/hh.png" alt="">
+                        <div class="m2t1-title"><i id="priceTitle" id="sf">城市</i><span class="fr" id="priceDate">2018-12-19</span></div>
+                        <div class="m2t1-contt">
+                            <div class="cottL1 fl" id="priceCitys"><div class="li1-sp1" id="cs">成都</div></div>
+                            <div class="cottL1 fr" id="priceExps"><div class="li1-sp2">928.44&nbsp;&nbsp;0%</div></div>
+                        </div>
+                    </div>
+                    <div class="m2t2 fr">
+                        <h3 class="m2t2-h3" >全国运价周环比指数<span style="font-size:12px;" id="priceYearAndCycle">&nbsp;(2018年第51周)</span></h3>
+                        <div class="comrData m2t2-comd fr">
+                           <!-- <div class="t1 fl"><span class="sp0"></span>当前省份</div>
+                            <div class="t1 fl"><span class="sp0"></span>增长指数</div>
+                            <div class="t1 fl"><span class="sp0"></span>下跌指数</div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="map2yj-tu"  _echarts_instance_="ec_1545644084489" style="-webkit-tap-highlight-color: transparent; user-select: none; position: relative; background: transparent;"><div style="position: relative; overflow: hidden; width: 660px; height: 550px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;">
+                    <div  id="container" style="width: 660px;height:550px;padding-left: 20px;padding-top: 25px"></div>
+                    <!--<canvas width="660" height="550" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 660px; height: 550px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>-->
+                </div>
+                    <div style="position: absolute; display: none; border-style: solid; white-space: nowrap; z-index: 9999999; background-color: rgba(50, 50, 50, 0.7); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 8px; color: white; ; text-decoration: none; padding: 20px; left: 349px; top: 405px;"><span style="font-size:18px;">云南</span><span style="margin-left:20px;">2018-12-19</span><hr>昆明 : 0.01%<br></div></div>
+
+            </div>
+        </div>
+    </div>
+    <!-- 运价指数结束 -->
+    <!-- 运量指数开始 -->
+    <div class="com2In con2Volu" style="display:none;">
+        <div class="swiper-container swiper-container-horizontal" id="swiper-container2">
+            <div class="swiper-wrapper" id="swiper-wrapper2" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                <div class="swiper-slide volume1">
+                    <ul class="voluUl">
+                        <li>
+                            <div class="li1">
+                                <div class="li1-sp1 fl">总指数</div>
+                                <div class="li1-sp2 fr">120.5</div>
+                            </div>
+                            <div class="li2">涨跌值：4.22  涨跌幅：3.63% </div>
+                        </li>
+                        <li>
+                            <div class="li1">
+                                <div class="li1-sp1 fl">零担轻货</div>
+                                <div class="li1-sp2 li1-sp22 fr">20.5</div>
+                            </div>
+                            <div class="li2">涨跌值：4.22  涨跌幅：3.63% </div>
+                        </li>
+                        <li>
+                            <div class="li1">
+                                <div class="li1-sp1 fl">零担重货</div>
+                                <div class="li1-sp2 fr">100.5</div>
+                            </div>
+                            <div class="li2">涨跌值：4.22  涨跌幅：3.63% </div>
+                        </li>
+                        <li>
+                            <div class="li1">
+                                <div class="li1-sp1 fl">整车</div>
+                                <div class="li1-sp2 li1-sp22 fr">12.5</div>
+                            </div>
+                            <div class="li2">涨跌值：4.22  涨跌幅：3.63% </div>
+                        </li>
+                        <li>
+                            <div class="li1">
+                                <div class="li1-sp1 fl">长三角</div>
+                                <div class="li1-sp2 fr">20.5</div>
+                            </div>
+                            <div class="li2">涨跌值：4.22  涨跌幅：3.63% </div>
+                        </li>
+                    </ul>
+                    <a href="http://index.0256.cn/yunjiafind(%E8%BF%90%E4%BB%B7%E6%8C%87%E6%95%B0%E6%9F%A5%E8%AF%A2%E9%A1%B5).html" class="voluBtn">查询</a>
+                </div>
+            </div>
+
+            <!-- Add Arrows -->
+
+            <div class="swiper-button-next" id="swiper-button-next2" style="background:url(js/page1/rleft.png);background-size:100% 100%;width:25px;height:98px;cursor: pointer;margin-top:-50px;transform: rotate(180deg);margin-left: 50px;"></div>
+            <div class="swiper-button-prev swiper-button-disabled" id="swiper-button-prev2" style="background:url(js/page1/rleft.png);background-size:100% 100%;width:25px;height:98px;cursor: pointer;margin-top:-50px;"></div>
+        </div>
+        <!-- 运量指数-地图 -->
+        <div class="voluMap">
+            <div class="map1 fl">
+                <div class="map1-t1">
+                    <div class="mt1" style="z-index: 100;position: relative;">
+                        <div class="mt1-til fl"><span></span>运量指数</div>
+                        <div class="mt1-ti2 fr">
+                            <!--
+                            <span class="mtp1 tag-cloud" onclick="selectItem(this,3,'tag-cloud','volume')">月</span>
+                            <span class="mtp1" onclick="selectItem(this,4,'tag-cloud','volume')">季</span>
+                            <span class="mtp1" onclick="selectItem(this,5,'tag-cloud','volume')">年</span>
+                             -->
+                            <div class="mt1-ti3 fr"><span class="yshu">总指数</span></div>
+                        </div>
+                    </div>
+                    <div class="mt2">
+                        <div class="mt2-t2 fr"><span></span>同比指数</div>
+                        <div class="mt2-t1 mt2-t3 fr"><span></span>环比指数</div>
+                        <div class="mt2-t1 fr"><span></span>定基指数</div>
+                    </div>
+                    <div class="mt3 " style="width:500px;height:300px;margin-top: -60px;" id="echarts2"></div>
+                </div>
+                <div class="map1-t1 mapp-t22">
+                    <div class="mt1 mt11">
+                        <div class="mt1-til fl"><span></span>运出货物类型</div>
+                        <div class="mt1-ti3 fr"><span class="yshu">全国</span></div>
+                    </div>
+                    <div class="mt3 " style="width:500px;height:300px;margin-top: -100px;" id="echarts3"></div>
+                </div>
+            </div>
+            <div class="map2 fl">
+                <div class="map2Title">
+                    <div class="m2t1 fl">
+                        <img class="m2t1Btimg" src="js/page1/hh.png" alt="">
+                        <div class="m2t1-title"><i id="volumeTitle">广东</i><span class="fr" id="volumeDate">2017-01-19</span></div>
+                        <div class="m2t1-contt">
+                            <div class="cottL1 fl" id="volumeCitys">
+                                <div class="li1-sp1">广州</div>
+                            </div>
+                            <div class="cottL1 fr" id="volumeExps">
+                                <div class="li1-sp2">31.20%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m2t2 fr">
+                        <h3 class="m2t2-h3">全国各省份运量月环比指数<span style="font-size:12px;" id="voluemYearAndCycle">&nbsp;(2017年第1周)</span></h3>
+                        <div class="comrData m2t2-comd fr">
+                            <div class="t1 fl"><span class="sp0"></span>当前省份</div>
+                            <div class="t1 fl"><span class="sp0"></span>增长指数</div>
+                            <div class="t1 fl"><span class="sp0"></span>下跌指数</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="map2Ditu" id="container2"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 运量指数结束 -->
+    <!-- 货源开始 -->
+    <div class="com2In" style="display:none;">
+        <div class="com2Left fl">
+            <div class="com2Left1">
+                <h3>交易货源量<span></span></h3>
+                <div class="com2Lnew"><div class="t1 fl">1</div><div class="t1 fl">9</div><div class="t1 fl">5</div><div class="t1 fl">9</div><div class="t1 fl">9</div><div class="t1 fl">7</div><div class="t1 fl">0</div><div class="t1 fl">6</div><div class="t2 fl">条</div></div>
+            </div>
+            <div class="com2Left2">
+                <div class="til">
+                    <div class="txt1 fl">最新货源信息</div>
+                    <div class="txt2 fr">全国省份货源及时更新<span onclick="indexGoods(1,10);"></span></div>
+                </div>
+                <ul class="com2Nr"><li title="【忻州】散小麦：忻州五台-&gt;开封兰考，有散小麦，求13米高栏车，160元/趟 电话：18231005212"><div class="xuhao fl">1</div><p class="nerong fl" style="font-size: 12px;"><span class="nerp1 fl">【忻州】散小麦：忻州五台-&gt;开封兰考，有散小麦，求13米高栏车，160元/趟 </span><span class="ctime fr">1小时前</span></p></li><li title="【襄樊】59渭南大荔到深圳海吉星 龙岗 松岗 各30-32吨西瓜 价高急走 东莞樟木头 东莞大岭山 东莞塘厦 东莞下桥各30-32吨西瓜 价高急走 广州 番禺区 佛山 江门各30-32吨西瓜 惠州 汕头 普宁 电话：09133221555，15319095690"><div class="xuhao fl">2</div><p class="nerong fl" style="font-size: 12px;"><span class="nerp1 fl">【襄樊】59渭南大荔到深圳海吉星 龙岗 松岗 各30-32吨西瓜 价高急走 东莞樟木头 东莞大岭山 东莞塘厦 东莞下桥各30-32吨西瓜 价高急走 广州 番禺区 佛山 江门各30-32吨西瓜 惠州 汕头 普宁 </span><span class="ctime fr">1小时前</span></p></li><li title="【玉溪】玉溪通海-&gt;柳州，有蔬菜，求9.6米车红河石屏-&gt;柳州，有蔬菜，求9.6米车，全现金，一装一卸，随时装货，高价急走，三不超 电话：18206790959"><div class="xuhao fl">3</div><p class="nerong fl" style="font-size: 12px;"><span class="nerp1 fl">【玉溪】玉溪通海-&gt;柳州，有蔬菜，求9.6米车红河石屏-&gt;柳州，有蔬菜，求9.6米车，全现金，一装一卸，随时装货，高价急走，三不超 </span><span class="ctime fr">1小时前</span></p></li><li title="【渭南】渭南蒲城-&gt;东莞，有水果30吨，求13米，13.5米，14米高栏车 电话：18829556225"><div class="xuhao fl">4</div><p class="nerong fl" style="font-size: 12px;"><span class="nerp1 fl">【渭南】渭南蒲城-&gt;东莞，有水果30吨，求13米，13.5米，14米高栏车 </span><span class="ctime fr">1小时前</span></p></li><li title="【张掖】张掖民乐-&gt;揭阳，有牛6吨，求9.6米高栏车，7500元/吨 电话：15339762666"><div class="xuhao fl">5</div><p class="nerong fl" style="font-size: 12px;"><span class="nerp1 fl">【张掖】张掖民乐-&gt;揭阳，有牛6吨，求9.6米高栏车，7500元/吨 </span><span class="ctime fr">1小时前</span></p></li><li title="【平顶山】平顶山-&gt;南京，有设备8吨，求6.8米高栏车 电话：13839598696"><div class="xuhao fl">6</div><p class="nerong fl" style="font-size: 12px;"><span class="nerp1 fl">【平顶山】平顶山-&gt;南京，有设备8吨，求6.8米高栏车 </span><span class="ctime fr">1小时前</span></p></li><li title="【石家庄】河北石家庄 -&gt; 山东泰安肥城, 11吨, 求6.8米 车 电话：15932663677"><div class="xuhao fl">7</div><p class="nerong fl" style="font-size: 12px;"><span class="nerp1 fl">【石家庄】河北石家庄 -&gt; 山东泰安肥城, 11吨, 求6.8米 车 </span><span class="ctime fr">1小时前</span></p></li><li title="【许昌】许昌-&gt;平凉30吨，求13米，13.5米高栏车 电话：15237502079"><div class="xuhao fl">8</div><p class="nerong fl" style="font-size: 12px;"><span class="nerp1 fl">【许昌】许昌-&gt;平凉30吨，求13米，13.5米高栏车 </span><span class="ctime fr">1小时前</span></p></li><li title="【伊克昭盟】鄂尔多斯东胜区-&gt;通辽，有煤炭，求车，340元/趟，好装 电话：13310300339"><div class="xuhao fl">9</div><p class="nerong fl" style="font-size: 12px;"><span class="nerp1 fl">【伊克昭盟】鄂尔多斯东胜区-&gt;通辽，有煤炭，求车，340元/趟，好装 </span><span class="ctime fr">1小时前</span></p></li><li title="【南宁】南宁武鸣-&gt;南宁上林巷贤卸13吨-14吨，求6.8米，7.6米高栏车 电话：15578940550"><div class="xuhao fl">10</div><p class="nerong fl" style="font-size: 12px;"><span class="nerp1 fl">【南宁】南宁武鸣-&gt;南宁上林巷贤卸13吨-14吨，求6.8米，7.6米高栏车 </span><span class="ctime fr">1小时前</span></p></li></ul>
+                <div class="w_yjzs_w1002">
+                    <div class="w_page fl" id="pagerDiv">
+                        <!--如果当前是首页加上disabled="disabled"，如果是最后一页，在尾页加上disabled="disabled" ,并且样式改为w_page_btn2-->
+                        <input type="button" onclick="indexGoods(1,10);" value="首页" class="w_page_btn">
+                        <input type="button" onclick="indexGoods(-1,10);" value="上页" class="w_page_btn">
+                        <input type="text" value="1" id="currentPage" style="text-align: center;cursor:default;" class="w_page_txt">
+                        <input type="button" value="GO" onclick="indexGoods($(this).prev().val(),10);" class="w_page_go">
+                        <input type="button" value="下页" onclick="indexGoods(0,10);" class="w_page_btn">
+                        <input type="button" value="尾页" onclick="indexGoods(-2,10);" class="w_page_btn">
+                    </div>
+                    <div class="w_page fr" id="dataDesc" style="font-size:10px;">当前<span class="mtsh_shsp">1</span>/100000页</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var bool = false;
+    var bool2 = false;
+    $(function(){
+        tb1();
+        tb2();
+        $('.com1Ul li').click(function(e){
+            var text = $(this).text();
+            if(text=="运量指数"&&!bool){
+                indexVolume();
+                indexTraffic();
+                indexVolumeExponent();
+                $.ajax({
+                    url : 'volume_map.action',
+                    type : 'post',
+                    dataType : 'json',
+                    success : function(json) {
+                        expMap2 = json.expMap;
+
+                        chinaMapCharts2(json.nameList);
+                    }
+                });
+                bool = true;
+            } else if(text=="货源信息"&&!bool2) {
+                indexLine();
+
+                bool2 = true;
+            }
+            $(this).addClass('on').siblings().removeClass('on');
+            $('.com2In').eq($(this).index()).show().siblings().hide();
+        });
+        $(window).scroll(function(e) {
+            //如果用户滚动条的距离大于一个屏幕的高度，我们才让小火箭出现
+            if($(window).scrollTop() > $(window).height()){
+                $('.reTotop').show();
+            }else{
+                $('.reTotop').hide();
+            }
+        });
+        //点击时，滚动条距离为0，回到顶端
+        $('.reTotop').click(function(e) {
+            $('body,html').animate({'scrollTop':'0'},500);
+        });
+
+
+    });
+    var res = 'r/cms/www/red';
+</script>
+<script src="js/page1/chart.js"></script>
+
+
+</body></html>

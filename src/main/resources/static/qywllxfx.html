@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+  　<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+  <!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+   <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+   <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+   <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+   <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+   <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+   <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+   <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+   <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>-->
+   <link rel="stylesheet" type="text/css" href="js/page1/common.css">
+   <link rel="stylesheet" href="js/page1/swiper.min.css">
+   <script src="js/page1/swiper.min.js"></script>
+   <script type="text/javascript" src="js/page1/WdatePicker.js"></script>
+   <link href="js/page1/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+   <script type="text/javascript" src="js/echarts.min.js"></script>
+  <script type="text/javascript" src="js/page1/jquery-3.1.1.min.js"></script>
+   <script type="text/javascript" src="js/page1/jquery-form.js"></script>
+   <script type="text/javascript" src="js/page1/echarts.min.js"></script>
+   <script type="text/javascript" src="js/page1/ecStat.min.js"></script>
+   <script type="text/javascript" src="js/page1/dataTool.min.js"></script>
+   <script type="text/javascript" src="js/page1/china.js"></script>
+   <script type="text/javascript" src="js/page1/world.js"></script>
+   <script type="text/javascript" src="js/page1/api.js"></script>
+   <script type="text/javascript" src="js/page1/bmap.min.js"></script>
+   <script type="text/javascript" src="js/page1/simplex.js"></script>
+   <script type="text/javascript">
+       $(function(){
+           tb1();
+           tb2();
+       });
+
+       function  tb1() {
+           var dom = document.getElementById("container");
+           var myChart = echarts.init(dom);
+           //myChart.showLoading();
+           $.get('les-miserables.gexf', function (xml) {
+              // myChart.hideLoading();
+
+               var graph = echarts.dataTool.gexf.parse(xml);
+               var categories = [];
+               for (var i = 0; i < 9; i++) {
+                   categories[i] = {
+                       name: '类目' + i
+                   };
+               }
+               graph.nodes.forEach(function (node) {
+                   node.itemStyle = null;
+                   node.value = node.symbolSize;
+                   node.symbolSize /= 1.5;
+                   node.label = {
+                       normal: {
+                           show: node.symbolSize > 10
+                       }
+                   };
+                   node.category = node.attributes.modularity_class;
+               });
+               option = {
+                   title: {
+                       left: 'center',
+                       text: '区域物流流向图',
+                       //subtext: 'Circular layout',
+                   },
+                   tooltip: {},
+                   /*legend: [{
+
+                       data: categories.map(function (a) {
+                           return a.name;
+                       })
+                   }],*/
+                   animationDurationUpdate: 1500,
+                   animationEasingUpdate: 'quinticInOut',
+                   series : [
+                       {
+                           //禁止缩放  true为缩放
+                           roam:false,
+                           name: '城市',
+                           type: 'graph',
+                           layout: 'circular',
+                           circular: {
+                               rotateLabel: true
+                           },
+                           data: graph.nodes,
+                           links: graph.links,
+                           categories: categories,
+                           label: {
+                               normal: {
+                                   position: 'right',
+                                   formatter: '{b}'
+                               }
+                           },
+                           lineStyle: {
+                               normal: {
+                                   color: 'source',
+                                   curveness: 0.3
+                               }
+                           }
+                       }
+                   ]
+               };
+               myChart.setOption(option, true);
+               myChart.on('click', function(param) {
+                   //重要的参数都在这 param
+                   tb2();
+               });
+           }, 'xml');
+       }
+
+       /**
+        * 产生随机整数，包含下限值，但不包括上限值
+        * @param {Number} lower 下限
+        * @param {Number} upper 上限
+        * @return {Number} 返回在下限到上限之间的一个随机整数
+        */
+       function random(lower, upper) {
+           return Math.floor(Math.random() * (upper - lower)) + lower;
+       }
+
+       function getData(){
+           var data=[];
+           for(i=0;i<14;i++){
+               data.push(random(10000,20000));
+           }
+           return data;
+       };
+
+       function tb2(){
+           var dom = document.getElementById("container1");
+           var myChart = echarts.init(dom);
+
+           option = {
+               title: {
+                   text: '四川货物总量',
+                   //subtext: '数据来自网络'
+               },
+               tooltip: {
+                   trigger: 'axis',
+                   axisPointer: {
+                       type: 'shadow'
+                   }
+               },
+               legend: {
+                   data: ['流入', '流出']
+               },
+               grid: {
+                   left: '3%',
+                   right: '4%',
+                   bottom: '3%',
+                   containLabel: true
+               },
+               xAxis: {
+                   type: 'value',
+                   boundaryGap: [0, 0.01]
+               },
+               yAxis: {
+                   type: 'category',
+                   data: ['成都','攀枝花','自贡','泸州','宜宾','达州',"绵阳","广元","南充","广安","遂宁","内江","乐山","雅安"]
+               },
+               series: [
+                   {
+                       name: '流入',
+                       type: 'bar',
+                       data: getData()
+                   },
+                   {
+                       name: '流出',
+                       type: 'bar',
+                       data: getData()
+                   }
+               ]
+           };
+           myChart.setOption(option, true);
+       }
+
+
+   </script>
+   <body style="height: 100%; margin: 0">
+   <ul>
+       <li style="float:left;list-style-type:none;"><div id="container" style="width: 550px;height: 550px"></div></li>
+       <li style="float:left;list-style-type:none;"><div id="container1" style="width: 550px;height: 550px"></div></li>
+   </ul>
+
+
+   </body>
+</html>

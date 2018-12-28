@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="css/wu.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtCss.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtIcon.css" />
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+
+</head>
+
+
+<body >
+<div class="easyui-layout" data-options="fit:true" region="north">
+    <div class="search-condition" region="north" border="false" style="height:40px;width:100%" >
+        <table style="width:100%;table-layout:fixed;" >
+            <tr>
+                <td align="left" colspan="2">
+                    <a class="easyui-linkbutton" id="saveBtn1" data-options="plain:true,iconCls:'icon-save'">查看历史</a>&nbsp;&nbsp;
+                    <a class="easyui-linkbutton" id="saveBtn2" data-options="plain:true,iconCls:'icon-reload'">维护血统关系</a>&nbsp;&nbsp;
+                    <a class="easyui-linkbutton" id="saveBtn3" data-options="plain:true,iconCls:'icon-tip'">血统分析图</a>&nbsp;&nbsp;
+                    <a class="easyui-linkbutton" id="saveBtn4" data-options="plain:true,iconCls:'icon-tip'">影响分析图</a>&nbsp;&nbsp;
+                    <a class="easyui-linkbutton" id="saveBtn5" data-options="plain:true,iconCls:'icon-print'">导出表结构</a>&nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+    </div>
+    <form method="post" id="searchForm" >
+        <input type="hidden" name="parentId" id="parentId"/>
+        <input type="hidden" name="id" id="id"/>
+        <input type="hidden" name="iconCls" id="iconCls"/>
+        <input type="hidden" name="oldVal" id="oldVal"/>
+        <input type="hidden" name="organSeq" id="organSeq"/>
+        <input type="hidden" name="removed" id="removed" value="0"/>
+        <table style="width:100%;table-layout:fixed;" class="form-table">
+            <tr>
+                <th class="form-label">元数据代码:</th>
+                <td colspan="3"><input style="width: 400px;" name="text" id="text" value="T_OBJ_BASIC_WORD"
+                            data-options="required:true,validType:['maxLength[100]'], tipPosition: 'top'"  /></td>
+
+            </tr>
+            <tr>
+                <th class="form-label">元数据名称:</th>
+                <td colspan="3"><input style="width: 400px;" name="code" id="code1" value="订单业务指数"
+                           data-options="required:true,validType:['maxLength[50]', 'noChinese']"/></td>
+            </tr>
+            <tr>
+                <th class="form-label">序号:</th>
+                <td colspan="3"><input style="width: 400px;" name="orderNum1" id="10011"
+                           data-options="required:true,min:0,max:10000" value="1"/></td>
+            </tr>
+            <tr>
+                <th class="form-label">数据源名称:</th>
+                <td colspan="3"><input style="width: 400px;" name="code" id="code11" value="企业平台数据"
+                           data-options="required:true,validType:['maxLength[50]', 'noChinese']"/></td>
+            </tr>
+            <tr>
+                <th class="form-label">数据分区:</th>
+                <td colspan="3"><input style="width: 400px;" name="code" id="codes" value="数据仓库(PDW)"
+                           data-options="required:true,validType:['maxLength[50]', 'noChinese']"/></td>
+            </tr>
+            <tr>
+                <th class="form-label">定义:</th>
+                <td colspan="3"><input style="width: 400px;" name="code" id="codess" value=""
+                           data-options="required:true,validType:['maxLength[50]', 'noChinese']"/></td>
+            </tr>
+            <tr>
+                <th class="form-label">备注:</th>
+                <td colspan="3"><input class="easyui-textbox" data-options="multiline:true,validType:['maxLength[200]']" value="办公室备注"
+                                       style="height:120px;width:660px" name="description" id="description"/></td>
+            </tr>
+        </table>
+    </form>
+
+    <div style="height: 60px"></div>
+    <table width="100%" >
+        <tr>
+            <td style="text-align:center;" colspan="4">
+                <a class="easyui-linkbutton" id="saveBtn">保存</a>
+                <a class="easyui-linkbutton" id="resetBtn">重置</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+</body>
+</html>

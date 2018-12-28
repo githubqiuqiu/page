@@ -1,0 +1,4 @@
+
+.component-search .search{ float:left; height:28px;}
+.component-search .text{width:159px; border:none; background:#ffffff; border: 1px solid #cccccc; height:28px; line-height: 28px; float:left; padding-left:5px; color:#cccccc;}
+.component-search .submit{width:34px; height:28px; border:none; display:block; float:left;}

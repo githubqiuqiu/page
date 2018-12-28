@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+</head>
+　<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
+<!-- <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+ <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+ <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+ <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+ <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+ <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+ <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+ <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+ <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>-->
+<link rel="stylesheet" type="text/css" href="js/page1/common.css">
+<link rel="stylesheet" href="js/page1/swiper.min.css">
+<script src="js/page1/swiper.min.js"></script>
+<script type="text/javascript" src="js/page1/WdatePicker.js"></script>
+<link href="js/page1/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/page1/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/page1/jquery-form.js"></script>
+<script type="text/javascript" src="js/page1/echarts.min.js"></script>
+<script type="text/javascript" src="js/page1/ecStat.min.js"></script>
+<script type="text/javascript" src="js/page1/dataTool.min.js"></script>
+<script type="text/javascript" src="js/page1/china.js"></script>
+<script type="text/javascript" src="js/page1/world.js"></script>
+<script type="text/javascript" src="js/page1/api.js"></script>
+<script type="text/javascript" src="js/page1/bmap.min.js"></script>
+<script type="text/javascript" src="js/page1/simplex.js"></script>
+<script type="text/javascript">
+    $(function(){
+
+        tb2();
+    });
+
+
+
+    /**
+     * 产生随机整数，包含下限值，但不包括上限值
+     * @param {Number} lower 下限
+     * @param {Number} upper 上限
+     * @return {Number} 返回在下限到上限之间的一个随机整数
+     */
+    function random(lower, upper) {
+        return Math.floor(Math.random() * (upper - lower)) + lower;
+    }
+
+    function getData(count,min,max){
+        var data=[];
+        for(i=0;i<count;i++){
+            data.push(random(min,max));
+        }
+        return data;
+    };
+
+    function tb2(){
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        option = null;
+        option = {
+            title: {
+                text: '重点物流基地及地吞吐'
+            },
+            tooltip: {},
+            legend: {
+                left: 'right',
+                data: ['输入', '输出']
+            },
+            radar: {
+                // shape: 'circle',
+                name: {
+                    textStyle: {
+                        color: '#fff',
+                        backgroundColor: '#999',
+                        borderRadius: 3,
+                        padding: [3, 5]
+                    }
+                },
+                indicator: [
+                    { name: '成都', max: 150},
+                    { name: '攀枝花', max: 150},
+                    { name: '自贡', max: 150},
+                    { name: '泸州', max: 150},
+                    { name: '宜宾', max: 150},
+                    { name: '达州', max: 150},
+                    { name: '绵阳', max: 150},
+                    { name: '南充', max: 150},
+                    { name: '广元', max: 150},
+                    { name: '遂宁', max: 150},
+                    { name: '内江', max: 150},
+                    { name: '乐山', max: 150},
+                    { name: '雅安', max: 150},
+                ]
+            },
+            series: [{
+                type: 'radar',
+                // areaStyle: {normal: {}},
+                data : [
+                    {
+                        //value : [145, 123, 98, 109, 89, 110,92,130,127,88,76,79,88],
+                        value:getData(13,20,149),
+                        name : '输入',
+                        //这里的配置显示数值
+                        label: {
+                            normal: {
+                                show: true,
+                                formatter:function(params) {
+                                    return params.value;
+                                }
+                            }
+                        }
+                    },
+                    {
+                        //value : [138, 121, 108, 130, 78, 89,95,65,58,102,76,61,69],
+                        value:getData(13,20,149),
+                        name : '输出',
+                        //这里的配置显示数值
+                        label: {
+                            normal: {
+                                show: true,
+                                formatter:function(params) {
+                                    return params.value;
+                                }
+                            }
+                        }
+                    }
+                ]
+            }]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    }
+
+
+</script>
+<body style="height: 100%; margin: 0">
+<ul>
+    <li style="float:left;list-style-type:none;padding-left: 30px">
+        <div class="w_yjzs_w1002" style="width: 300px;height: 550px">
+            <table id="resultTable">
+                <thead>
+                <tr class="w_yjzs_tbtr1">
+                <td>城市</td><td>输入</td><td>输出</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td><span style="">成都 </span></td><td>10000 </td><td>8000 </td></tr>
+                <tr><td><span style="">攀枝花</span></td><td>8000 </td><td>7000 </td></tr>
+                <tr><td><span style="">自贡 </span></td><td>6000 </td><td>7000 </td></tr>
+                <tr><td><span style="">泸州 </span></td><td>6000 </td><td>7000 </td></tr>
+                <tr><td><span style="">宜宾 </span></td><td>6000 </td><td>7000 </td></tr>
+                <tr><td><span style="">达州 </span></td><td>6000 </td><td>7000 </td></tr>
+                <tr><td><span style="">绵阳 </span></td><td>6000 </td><td>7000 </td></tr>
+                <tr><td><span style="">广元 </span></td><td>6000 </td><td>7000 </td></tr>
+                <tr><td><span style="">南充 </span></td><td>6000 </td><td>7000 </td></tr>
+                <tr><td><span style="">广安 </span></td><td>6000 </td><td>7000 </td></tr>
+                <tr><td><span style="">遂宁 </span></td><td>6000</td><td>7000 </td></tr>
+                <tr><td><span style="">内江 </span></td><td>6000 </td><td>7000 </td></tr>
+
+                </tbody>
+            </table>
+        </div>
+    </li>
+    <li style="padding-left: 50px;float:left;list-style-type:none;">
+        <div id="container" style="width: 700px;height: 550px"></div>
+    </li>
+</ul>
+
+
+</body>
+</html>

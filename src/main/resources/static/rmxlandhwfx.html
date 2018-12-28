@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <link rel="stylesheet" type="text/css" href="js/page1/common.css">
+    <link rel="stylesheet" href="js/page1/swiper.min.css">
+    <script src="js/page1/swiper.min.js"></script>
+    <script type="text/javascript" src="js/page1/WdatePicker.js"></script>
+    <link href="js/page1/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/page1/jquery-min.js"></script>
+    <script type="text/javascript" src="js/page1/jquery-form.js"></script>
+    <script type="text/javascript" src="js/page1/echarts.min.js"></script>
+    <script type="text/javascript" src="js/page1/ecStat.min.js"></script>
+    <script type="text/javascript" src="js/page1/dataTool.min.js"></script>
+    <script type="text/javascript" src="js/page1/china.js"></script>
+    <script type="text/javascript" src="js/page1/world.js"></script>
+    <script type="text/javascript" src="js/page1/api.js"></script>
+    <script type="text/javascript" src="js/page1/bmap.min.js"></script>
+    <script type="text/javascript" src="js/page1/simplex.js"></script>
+    <style>
+        body{
+            margin:0;
+            padding:0;
+            height:100%;
+            background:#090c24;
+        }
+        ul, li{
+            list-style: none;
+            margin:0;
+            padding:0;
+        }
+
+        li {
+            margin:0;
+            /*
+              For IE6 + IE7:
+
+              "display: list-item" keeps bullets from
+              disappearing if hasLayout is triggered.
+            */
+            display: list-item;
+        }
+        /* http://sonspring.com/journal/clearing-floats */
+
+        .clear {
+            clear: both;
+            display: block;
+            overflow: hidden;
+            visibility: hidden;
+            width: 0;
+            height: 0;
+        }
+
+        /* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
+
+        .clearfix:before,
+        .clearfix:after {
+            content: '.';
+            display: block;
+            overflow: hidden;
+            visibility: hidden;
+            font-size: 0;
+            line-height: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .clearfix:after{
+            clear: both;
+        }
+
+        /*
+          The following zoom:1 rule is specifically for IE6 + IE7.
+          Move to separate stylesheet if invalid CSS is a problem.
+        */
+
+        .clearfix {
+            zoom: 1;
+        }
+
+
+        .fl{
+            float:left;
+        }
+        .fr{
+            float:right;
+        }
+
+
+        h1,h2,h3,h4,h5,h6{
+            margin:0;
+            padding:0;
+        }
+
+
+
+        .main, .main-left, .main-right{
+            height:100%;
+        }
+
+
+        .main-left{
+            width:200px;
+        }
+
+        .main-left h4{
+            color:#cccedc;
+            text-align:center;
+            line-height:300%;
+        }
+
+        .main-left li{
+            line-height:20px;
+            padding:8px;
+            color:#f1f1f1;
+            font-size:0.9rem;
+        }
+        .main-left li i{
+            width:20px;
+            height:20px;
+            border-radius:10px;
+            background:#dcdcdc;
+            display:inline-block;
+            margin-right:10px;
+            font-size:0.6rem;
+            text-align:center;
+            font-style:normal;
+            color:#666;
+        }
+        .main-left li.g, .main-left li.s, .main-left li.b{
+            font-weight:bold;
+            color:#fff;
+        }
+        .main-left li.g i, .main-left li.s i, .main-left li.b i{
+            font-style:italic;
+            font-weight:bold;
+            color:#000;
+        }
+        .main-left li.g i{
+            background:#ffd700;
+        }
+        .main-left li.s i{
+            background:#b4b4b4;
+        }
+        .main-left li.b i{
+            background:#bfad6f;
+        }
+        .main-left li span{
+            font-weight:200;
+            font-size:0.6rem;
+            color:#999;
+        }
+
+
+        .main-right{
+            display: -webkit-flex; /* Safari */
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding:10px;
+            width:calc(100% - 200px);
+            color:#fff;
+            margin:0;
+        }
+        .main-right li {
+            flex: auto;
+            width: calc( 100% / 2 - 1rem - 4px);
+            float:left\9\0;
+            margin:0.5rem;
+            border: #314065 1px solid;
+            box-shadow: 2px 2px 5px 3px rgba(158,178,228,.1);
+        }
+
+    </style>
+</head>
+<script>
+    $(function(){
+
+        zzt("zzt1",'流出TOP5线路');
+        bzt("bzt1",'热门货物');
+        zzt("zzt2",'流入TOP5线路');
+        bzt("bzt2",'热门货物');
+    });
+
+    function zzt(ids,title){
+        var dom = document.getElementById(ids);
+        var myChart = echarts.init(dom);
+        option = {
+            title: {
+                text: title,
+                left: 'center',
+                top: 0,
+                textStyle: {
+                    color: '#ccc'
+                },
+            },
+            //背景色
+            //backgroundColor: '#404a59',
+            //柱状图柱子颜色
+            color: ['#3398DB'],
+            tooltip : {
+                formatter: "{b} : {c}/次",
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data : ['遵义市-重庆市', '贵阳市-昆明市', '遵义市-成都市', '遵义市-广州市', '贵阳市-郑州市'],
+                    axisTick: {
+                        alignWithLabel: true
+                    },
+                    //线的颜色
+                    axisLine: {
+                        lineStyle: {
+                            color: '#ffffff'
+                        }
+                    }
+                }
+
+            ],
+            yAxis : [
+                {
+                    name: '出现次数/笔',
+                    type: 'value',
+                    axisLine: {
+                        lineStyle: {
+                            color: '#ffffff'
+                        }
+                    }
+                }
+            ],
+            series : [
+                {
+                    // name:'直接访问',
+                    type:'bar',
+                    // barWidth: '60%',
+                    data:[150000, 180000, 250000, 100000, 220000]
+                }
+            ]
+        };
+        myChart.setOption(option, true);
+    }
+
+    function bzt(ids,title){
+        var dom = document.getElementById(ids);
+        var myChart = echarts.init(dom);
+        option = {
+            //背景色
+            //backgroundColor: '#404a59',
+            title : {
+                text:title ,
+                //subtext: '纯属虚构',
+                x:'center',
+                textStyle: {
+                    color: '#ccc'
+                },
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{b} : {c} ({d}%)"
+            },
+            legend: {
+                //orient: 'vertical',
+                left: 'center',
+                //控制图例位置 还有x
+                y: 30,
+                data: ['酒水饮料','钢材','编织袋','轮胎','危险品'],
+                textStyle:{//图例文字的样式
+                    color:'#ccc',
+                }
+            },
+            series : [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:335, name:'酒水饮料'},
+                        {value:310, name:'钢材'},
+                        {value:234, name:'编织袋'},
+                        {value:135, name:'轮胎'},
+                        {value:1548, name:'危险品'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    },
+
+                    label: {
+                        normal: {
+                            formatter: '{b}:{d}%  ',
+                            textStyle: {
+                                color: 'rgba(255, 255, 255, 0.3)'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            lineStyle: {
+                                color: 'rgba(255, 255, 255, 0.3)'
+                            },
+                            smooth: 0.2,
+                            length: 10,
+                            length2: 20
+                        }
+                    },
+                }
+            ]
+        };
+        myChart.setOption(option, true);
+    }
+
+</script>
+<body>
+<div class="main clearfix">
+    <div class="main-left fl">
+        <h4>热门线路TOP10</h4>
+        <ul>
+            <li class="g"><i>01</i>成都<span> &lt;&lt--&gt;&gt; </span>北京</li>
+            <li class="s"><i>02</i>成都<span> &lt;&lt--&gt;&gt; </span>南昌</li>
+            <li class="b"><i>03</i>成都<span> &lt;&lt--&gt;&gt; </span>广州</li>
+            <li><i>04</i>成都<span> &lt;&lt--&gt;&gt; </span>贵阳</li>
+            <li><i>05</i>成都<span> &lt;&lt--&gt;&gt; </span>武汉</li>
+            <li><i>06</i>成都<span> &lt;&lt--&gt;&gt; </span>重庆</li>
+            <li><i>07</i>泸州<span> &lt;&lt--&gt;&gt; </span>长沙</li>
+            <li><i>08</i>泸州<span> &lt;&lt--&gt;&gt; </span>上海</li>
+            <li><i>09</i>泸州<span> &lt;&lt--&gt;&gt; </span>成都</li>
+            <li><i>10</i>泸州<span> &lt;&lt--&gt;&gt; </span>重庆</li>
+        </ul>
+    </div>
+    <ul class="main-right fl">
+        <li> <div id="zzt1" style="width: 100%;height: 285px"></div></li>
+        <li><div id="bzt1" style="width: 100%;height: 285px"></div></li>
+        <li><div id="zzt2" style="width: 100%;height: 290px"></div></li>
+        <li> <div id="bzt2" style="width: 100%;height: 290px"></div></li>
+    </ul>
+</div>
+</body>
+</html>

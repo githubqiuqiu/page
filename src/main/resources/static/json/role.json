@@ -1,0 +1,13 @@
+{"total":10,"rows":[
+  {"rolename":"综合查询","rolecode":"zhcx"},
+  {"rolename":"信息中心普通用户","rolecode":"xxzx_normalUser"},
+  {"rolename":"查看元数据","rolecode":"viewMetaData"},
+  {"rolename":"系统管理员","rolecode":"sysAdmin"},
+  {"rolename":"审改办数据质量","rolecode":"sgb_dataQuality"},
+  {"rolename":"普通用户","rolecode":"normalRole"},
+  {"rolename":"地图展示","rolecode":"mapSearch"},
+  {"rolename":"数据中心二期管理员","rolecode":"idc2-admin"},
+  {"rolename":"审改办数据质量","rolecode":"sgb_dataQuality"},
+  {"rolename":"普通用户","rolecode":"normalRole"}
+
+]}

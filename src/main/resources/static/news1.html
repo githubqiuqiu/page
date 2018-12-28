@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="css/wu.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtCss.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtIcon.css" />
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+
+    <script >
+        function add() {
+            window.location.href="publishnews.html"
+        }
+
+    </script>
+</head>
+
+
+<body >
+<div class="easyui-layout" data-options="fit:true">
+    <div class="search-condition" title="查询条件" region="north" border="false" style="height:100px;" >
+        <form method="post" id="searchForm">
+
+            <div style="padding-top:10px">
+                <table style="width:100%;table-layout:fixed;" class="search-table">
+                    <tr>
+                        <th class="search-label">模板编号：</th>
+                        <td class="td_search"><input class="easyui-textbox" type="text" name="search_mouldcode_eq" ></input></td>
+
+                        <td colspan="2" align="left">
+                            &nbsp;&nbsp;
+                            <a class="easyui-linkbutton" id="searchBtn" data-options="iconCls:'icon-search'"> 查询 </a>&nbsp;&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <div region="center" border="false" style="margin:3px 0" >
+        <div class="gridTool" id="tb">
+            <a class="easyui-linkbutton" iconCls="icon-add" plain="true" id="addBtn" onclick="add()"> 新增</a>&nbsp;|&nbsp;
+            <a class="easyui-linkbutton" iconCls="icon-add" plain="true" id="addBtn1" onclick="add()"> 发布</a>&nbsp;|&nbsp;
+            <a class="easyui-linkbutton" iconCls="icon-remove" plain="true" id="removeBtn">删除</a>&nbsp;&nbsp;
+        </div>
+        <table id="tt" class="easyui-datagrid"
+               data-options=" fitColumns:true ,nowrap:false,"
+               iconCls="icon-save"
+               rownumbers="true" pagination="true"
+               toolbar="#tb">
+            <thead>
+            <tr>
+                <th data-options="field:'ck',checkbox:true" width="100px"></th>
+                <th field="userloginname" align="center" width="100px"  data-options=" fitColumns:true">信息主题</th>
+                <th field="userrealname" align="center" width="100px"  data-options=" fitColumns:true">发布日期</th>
+                <th field="organname" align="center" width="100px"  data-options=" fitColumns:true">信息上传人员</th>
+                <th field="userstatus" align="center" width="100px"  data-options=" fitColumns:true">信息审核人员</th>
+                <th field="createdate" align="center" width="100px" data-options=" fitColumns:true">发布状态</th>
+                <th field="read" align="center" width="100px"  data-options=" fitColumns:true">浏览</th>
+            </tr>
+            <tbody>
+            <tr>
+                <td></td>
+                <td >彭涛局长调研成都市北门车站信息化建设工作</td>
+                <td>2018-11-10</td>
+                <td>张三丰</td>
+                <td>刘佳</td>
+                <td>发布</td>
+                <td>浏览</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>厅运管局认真落实中央第四巡视组巡视四川省反馈意见对照检查整改工作</td>
+                <td>2018-11-10</td>
+                <td>周捷</td>
+                <td>刘佳</td>
+                <td>发布</td>
+                <td>浏览</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>厅运管局切实做好非洲猪瘟疫情联防联控工作</td>
+                <td>2018-11-10</td>
+                <td>周菁</td>
+                <td>刘佳</td>
+                <td>未发布</td>
+                <td>浏览</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>厅运管局安排部署秋冬季道路运输安全工作</td>
+                <td>2018-11-10</td>
+                <td>陈敏</td>
+                <td>刘佳</td>
+                <td>未发布</td>
+                <td>浏览</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>我省道路运输行业积极开展信用交通宣传月活动</td>
+                <td>2018-11-10</td>
+                <td>杨凯</td>
+                <td>刘佳</td>
+                <td>未发布</td>
+                <td>浏览</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>厅运管局对公交运行安全工作进行警示部署</td>
+                <td>2018-11-10</td>
+                <td>朱斌</td>
+                <td>刘佳</td>
+                <td>发布</td>
+                <td>浏览</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>厅运管局召开扫黑除恶专项斗争工作推进会</td>
+                <td>2018-11-10</td>
+                <td>费优连</td>
+                <td>刘佳</td>
+                <td>未发布</td>
+                <td>浏览</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>厅运管局召开专题会议研究道路运输安全生产工作</td>
+                <td>2018-11-10</td>
+                <td>于世斌</td>
+                <td>刘佳</td>
+                <td>未发布</td>
+                <td>浏览</td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>厅运管局召开扫黑除恶专项斗争工作推进会</td>
+                <td>2018-11-10</td>
+                <td>邹航</td>
+                <td>刘佳</td>
+                <td>未发布</td>
+                <td>浏览</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>厅运管局召开专题会议研究道路运输安全生产工作</td>
+                <td>2018-11-10</td>
+                <td>刘杰</td>
+                <td>刘佳</td>
+                <td>发布</td>
+                <td>浏览</td>
+            </tr>
+            </tbody>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+</html>

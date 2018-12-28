@@ -1,0 +1,416 @@
+
+<!-- saved from url=(0065)http://www.dataagri.com/agriculture/subject/detail.action?uuid=25 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>农业大数据应用云平台</title>
+    <meta name="baidu-site-verification" content="r84qrNvFbK">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="KeyWords" content="农业、大数据、应用、云平台、农业大数据">
+    <meta name="Description" content="农业大数据应用云平台，整合多渠道农业相关数据，引入数据挖掘展现技术，以专业分析为导向，面向高校、科研机构、政府机关、企事业单位，提供农业领域数据查询、在线分析、研究成果共享交流等应用服务。">
+    <link rel="shortcut icon" href="http://www.dataagri.com/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10">
+
+
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <link rel="stylesheet" type="text/css" href="js/nydsjpt/common.css">
+
+    <script src="js/nydsjpt/hm.js"></script>
+    <script src="js/nydsjpt/jquery.min.js" type="text/javascript"></script>
+
+    <script src="js/nydsjpt/jquery.ext.js" type="text/javascript"></script>
+    <script src="js/nydsjpt/dialog-min.js" type="text/javascript"></script>
+    <script src="js/nydsjpt/nongye_base.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="js/nydsjpt/ui-dialog.css">
+    <link rel="stylesheet" type="text/css" href="js/nydsjpt/jquery-ui.css">
+    <script src="js/nydsjpt/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="js/nydsjpt/slide.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/nydsjpt/json2.js"></script>
+    <link rel="stylesheet" href="js/nydsjpt/map.css" type="text/css">
+    <link rel="stylesheet" href="js/nydsjpt/css.css" type="text/css">
+    <script type="text/javascript" src="js/nydsjpt/highcharts.js"></script>
+    <script type="text/javascript" src="js/nydsjpt/highcharts-more.js"></script>
+    <script type="text/javascript" src="js/nydsjpt/longcredit-agriculture.js"></script>
+    <script type="text/javascript" src="js/nydsjpt/longcredit-comment.js"></script>
+    <!--气泡图-->
+    <link rel="stylesheet" href="js/nydsjpt/d3.matrix.css" type="text/css">
+    <!-- 地图 -->
+    <link rel="stylesheet" href="js/nydsjpt/longcredit.bulletbar.css" type="text/css">
+    <script type="text/javascript" src="js/nydsjpt/nongye_special.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/nydsjpt/nongye_special.css">
+    <link rel="stylesheet" href="js/nydsjpt/css.css" type="text/css">
+    <link href="js/nydsjpt/longcredit-component-select.css" rel="stylesheet" type="text/css">
+    <link href="js/nydsjpt/longcredit-component-time.css" rel="stylesheet" type="text/css">
+    <!--echart-->
+    <link href="js/page1/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="js/page1/swiper.min.css">
+    <script src="js/page1/swiper.min.js"></script>
+    <script type="text/javascript" src="js/page1/WdatePicker.js"></script>
+
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="js/page1/jquery-min.js"></script>
+    <script type="text/javascript" src="js/page1/jquery-form.js"></script>
+    <script type="text/javascript" src="js/page1/echarts.min.js"></script>
+    <script type="text/javascript" src="js/page1/ecStat.min.js"></script>
+    <script type="text/javascript" src="js/page1/dataTool.min.js"></script>
+    <script type="text/javascript" src="js/page1/china.js"></script>
+    <script type="text/javascript" src="js/page1/world.js"></script>
+    <script type="text/javascript" src="js/page1/api.js"></script>
+    <script type="text/javascript" src="js/page1/bmap.min.js"></script>
+    <script type="text/javascript" src="js/page1/simplex.js"></script>
+    <style>
+        .dialog_title_btn{ width:18px; height: 16px;  position:absolute; right:20px; top:20px;background:url("http://www.dataagri.com/resources/style/agriculture/img/login_title_btn.png") no-repeat; cursor: pointer; z-index: 99; }
+        .login_title{ width: 100%; height: 30px; line-height: 30px; float: left; display: inline;font-size: 30px; font-family: "微软雅黑";overflow: hidden; margin: 25px 0px 0px 40px;}
+        .login_title span{ width: auto; height: 30px; float: right; display: block; font-size: 16px; cursor: default; margin: 7px 80px 0px 0px; background: url("http://www.dataagri.com/resources/style/agriculture/img/login_title_span.png") no-repeat 0px 7px;padding: 0px 0px 0px 18px ;}
+    </style>
+    <style>
+        .re_up .replay_div{
+            display: block;
+        }
+        .re_down .replay_div{
+            display: none;
+        }
+    </style>
+    <style type="text/css">
+        .map {
+            width: 540px;
+            height: 400px;
+            margin: 0 0 0 50px;
+            float: left;
+        }
+        .bullet {
+            width: 200px;
+            height: 400px;
+            float: left;
+        }
+        .main_center {
+            position: static;
+        }
+    </style>
+
+
+    <script>
+        $(function () {
+            tb1();
+            zzt();
+        });
+        /**
+         * 产生随机整数，包含下限值，但不包括上限值
+         * @param {Number} lower 下限
+         * @param {Number} upper 上限
+         * @return {Number} 返回在下限到上限之间的一个随机整数
+         */
+        function random(lower, upper) {
+            return Math.floor(Math.random() * (upper - lower)) + lower;
+        }
+
+        function tb1(){
+            var dom = document.getElementById("container2");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+
+            data = [["2010",random(100,700)],["2011",random(100,700)],["2012",random(100,700)]];
+
+            var dateList = data.map(function (item) {
+                return item[0];
+            });
+            var valueList = data.map(function (item) {
+                return item[1];
+            });
+
+            option = {
+                // Make gradient line here
+                visualMap: {
+                    show: false,
+                    type: 'continuous',
+                    seriesIndex: 0,
+
+                },
+                title: {
+                    left: 'center',
+                    text: 'LPI走势图(%)'
+                },
+                tooltip: {
+                    formatter: $("#cs").val()+":<br/>{b} : {c}万人",
+                    trigger: 'axis'
+                },
+                xAxis: {
+                    name: '年份',
+                    data: dateList
+                },
+                yAxis: {
+                    name: '二产就业人员/万人',
+                },
+
+                series: {
+                    type: 'line',
+                    showSymbol: false,
+                    data: valueList
+                }
+            };;
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+        }
+
+        function zzt(){
+            var dom = document.getElementById("container3");
+            var myChart = echarts.init(dom);
+
+            var data=[];
+            for(i=0;i<9;i++){
+                data.push(random(100,700));
+            }
+
+            option = {
+                title: {
+                    text: 'LPI走势图(%)',
+                    left: 'center',
+                    top: 0,
+
+                },
+                //背景色
+                //backgroundColor: '#404a59',
+                //柱状图柱子颜色
+                color: ['#3398DB'],
+                tooltip : {
+                    formatter: $("#cs1").val()+":<br/>{b} : {c}万人",
+                    trigger: 'axis',
+                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+
+                xAxis : [
+                    {
+                        name: '年份',
+                        type : 'category',
+                        data : ['2010', '2011', '2012',"2013","2014","2015","2016","2017","2018"],
+
+                    }
+
+                ],
+                yAxis : [
+                    {
+                        name: '二产就业人员/万人',
+                        type: 'value',
+                    }
+                ],
+                series : [
+                    {
+                        // name:'直接访问',
+                        type:'bar',
+                        // barWidth: '60%',
+                        data:data
+                    }
+                ]
+            };
+            myChart.setOption(option, true);
+        }
+
+        function tableclick(){
+            document.getElementById("tableId").style.display="";//显示
+            document.getElementById("zxt").style.display="none";//隐藏
+            document.getElementById("zzt").style.display="none";//隐藏
+        }
+        function zhexianclick(){
+            document.getElementById("zxt").style.display="";//显示
+            document.getElementById("tableId").style.display="none";//隐藏
+            document.getElementById("zzt").style.display="none";//隐藏
+        }
+
+        function zhuzhuangtuclick(){
+            document.getElementById("zzt").style.display="";//隐藏
+            document.getElementById("tableId").style.display="none";//隐藏
+            document.getElementById("zxt").style.display="none";//隐藏
+        }
+
+        //切换样式js 第一个参数传this 第二个参数传需要的样式 并且移除其余的该样式
+        function changeys(target,cls) {
+            $(target).addClass(cls).siblings().removeClass(cls);
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+        <div class="special_chart">
+            <div class="chart_title">
+
+                <div class="title">
+                    <a href="javascript:void(0)">重点物资分析(流入)</a>
+                    <span>以查询指标为导航，用表格、线图、地图、气泡图四种方式展现经济数据</span>
+                </div>
+
+            </div>
+
+            <div class="chart_content">
+
+                <div id="subject_tabs" style=" overflow-x: hidden; width: 1180px;height: auto; min-height: 610px;"><div style="width: 1180px;">
+
+                    <div class="chart_content">
+                        <div class="chart_main">
+                            <div class="layer-middle-container">
+
+                                <div class="nybt-content-left">
+
+
+                                    <div id="selectId">
+                                        <div class="component-search">
+                                            <div class="searchindex"><input type="text" class="text" id="zb_search" value="搜索所有指标" ><a class="submit"></a></div>
+                                        </div>
+                                        <div class="blank10"></div>
+                                        <ul>
+                                            <li>
+                                                <div class="drop-down">全部</div>
+
+
+                                            </li><li>
+                                        </li></ul>
+                                        <div class="blank10"></div>
+                                        <div class="nybt-info"><p ccode="CSAA0701_01" dw="万元" class="zbshover" onclick="changeys(this,'zbshover')">煤</p><p ccode="CSAA0701_03" dw="元"  onclick="changeys(this,'zbshover')">石油</p><p ccode="CSAA0701_07" dw="%"  onclick="changeys(this,'zbshover')">钢铁</p><p ccode="CSAA0701_09" dw="%"  onclick="changeys(this,'zbshover')">矿石</p><p ccode="CSAA0701_11" dw="%"  onclick="changeys(this,'zbshover')">建材</p><p ccode="CSAA0201_01" dw="万人"  onclick="changeys(this,'zbshover')">农资</p></div>
+
+                                    </div>
+
+                                </div>
+                                <div style="float: left;width: 880px; padding-bottom: 30px;">
+                                    <div class="blank10"></div>
+                                    <div style="width:100%;line-height:22px;font-size:12px;color:#5F7894;text-indent:2em;" id="zbremark"></div>
+
+
+                                    <div id="barId" class="nybt-tab">
+
+
+                                        <div class="nybt-tab-item select" tag="4"><span class="ic4" onclick="tableclick()">表格</span></div>
+                                        <div class="nybt-tab-item" tag="2"><span class="ic2" onclick="zhexianclick()">线图</span></div>
+                                        <div class="nybt-tab-item" tag="5"><span class="ic5" onclick="zhuzhuangtuclick()">柱图</span></div>
+                                        <div class="nybt-tab-item" tag="1"><span class="ic1">点图</span></div>
+                                        <div class="nybt-tab-item" tag="3"><span class="ic3">地图</span></div>
+                                    </div>
+
+                                    <div class="nybt-content-main">
+
+                                        <!--右侧表格-->
+                                        <div id="tableId" tag="tab" style="width: 100%; margin: auto;">
+                                            <table class="tableList" width="100%">
+                                                <thead>
+                                                <tr id="bheader"><td class="table-title">区域</td><td class="table-title-order" _index="0" order="none" style="width: 90px; text-align: center;">2016</td><td class="table-title-order" _index="1" order="none" style="width: 90px; text-align: center;">2017</td><td class="table-title"><span></span><span></span>趋势</td></tr>
+                                                </thead>
+                                                <tbody id="tb">
+                                                <tr><td>四川</td><td style="text-align: center;">5.10</td><td style="text-align: center;">4.79</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_14_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,2.92079207920792L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>成都</td><td style="text-align: center;">6.97</td><td style="text-align: center;">7.11</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_0_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,3.5000000000000053L30,2L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>攀枝花</td><td style="text-align: center;">1.44</td><td style="text-align: center;">1.50</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_1_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2.5373134328358216L30,2L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>自贡</td><td style="text-align: center;">6.63</td><td style="text-align: center;">7.61</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_2_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,5.675000000000001L30,2L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>泸州</td><td style="text-align: center;">3.23</td><td style="text-align: center;">3.30</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_3_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,8L30,6.600000000000002L60,2" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>宜宾</td><td style="text-align: center;">22.83</td><td style="text-align: center;">21.86</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_4_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,8L60,6.88659793814433" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>达州</td><td style="text-align: center;">27.97</td><td style="text-align: center;">26.52</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_5_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,5.129496402877699L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>绵阳</td><td style="text-align: center;">13.00</td><td style="text-align: center;">12.83</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_6_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,3.522388059701492L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>广元</td><td style="text-align: center;">86.27</td><td style="text-align: center;">74.28</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_7_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,5.472007722007721L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>南充</td><td style="text-align: center;">1.54</td><td style="text-align: center;">1.40</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_8_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,4.709677419354841L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>广安</td><td style="text-align: center;">9.92</td><td style="text-align: center;">9.33</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_9_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,8L60,4.745762711864403" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                 <tr><td>遂宁</td><td style="text-align: center;">3.23</td><td style="text-align: center;">2.36</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_10_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,8L60,6.758620689655172" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                 <tr><td>内江</td><td style="text-align: center;">6.13</td><td style="text-align: center;">9.32</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_11_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,8L30,2L60,4.614420062695926" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                 <tr><td>乐山</td><td style="text-align: center;">6.69</td><td style="text-align: center;">6.17</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_12_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2.000000000000001L30,3.6774193548387117L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                 <tr><td>雅安</td><td style="text-align: center;">12.09</td><td style="text-align: center;">10.73</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_13_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,8L60,3.985294117647056" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <!--<tr><td>天津</td><td style="text-align: center;">0.71</td><td style="text-align: center;">0.60</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_15_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,6.125000000000002L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>湖北</td><td style="text-align: center;">10.55</td><td style="text-align: center;">7.38</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_16_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,8L60,6.315457413249213" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>湖南</td><td style="text-align: center;">5.74</td><td style="text-align: center;">5.28</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_17_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,2.92L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                                <tr><td>广东</td><td style="text-align: center;">8.81</td><td style="text-align: center;">8.20</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_18_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,4.440000000000003L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>广西</td><td style="text-align: center;">10.77</td><td style="text-align: center;">10.82</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_19_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,8L30,7.285714285714276L60,2" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>海南</td><td style="text-align: center;">0.21</td><td style="text-align: center;">7.66</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_20_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,8L30,2.4402985074626855L60,2" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>重庆</td><td style="text-align: center;">1.71</td><td style="text-align: center;">1.51</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_21_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,7.967435549525102L30,8L60,2" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>四川</td><td style="text-align: center;">3.55</td><td style="text-align: center;">3.42</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_22_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,3.012987012987012L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>贵州</td><td style="text-align: center;">0.85</td><td style="text-align: center;">0.89</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_23_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,6L30,2L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>云南</td><td style="text-align: center;">5.37</td><td style="text-align: center;">5.63</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_24_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,3.659574468085106L30,2L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>西藏</td><td style="text-align: center;">0.00</td><td style="text-align: center;">9.67</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_25_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,40.96590909090909L30,8L60,2" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>陕西</td><td style="text-align: center;">4.30</td><td style="text-align: center;">4.19</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_26_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,6.114285714285723L30,8L60,2.000000000000001" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>甘肃</td><td style="text-align: center;">5.45</td><td style="text-align: center;">4.95</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_27_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2L30,8L60,3.9200000000000017" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>青海</td><td style="text-align: center;">0.14</td><td style="text-align: center;">0.15</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_28_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,8L30,2L60,2" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>宁夏</td><td style="text-align: center;">2.64</td><td style="text-align: center;">2.78</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_29_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,8L30,5.9512195121951255L60,2" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>
+                                               <tr><td>新疆</td><td style="text-align: center;">1.27</td><td style="text-align: center;">1.13</td><td><div style="width:90px;height: 10px;" class="dv" id="dvqs_30_3"><svg style="width: 90px; height: 10px;"><g><path d="M0,2.000000000000001L30,6.666666666666672L60,8" fill="none" stroke="steelblue" stroke-width="1.5px"></path></g></svg></div></td></tr>-->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <!-- 点击切换折线图 -->
+                                        <div id="zxt" style="display:none;">
+                                            城市:
+                                            <select id="cs" onchange="tb1()">
+                                                <option>四川</option>
+                                                <option>成都</option>
+                                                <option>攀枝花</option>
+                                                <option>自贡</option>
+                                                <option>泸州</option>
+                                                <option>宜宾</option>
+                                                <option>达州</option>
+                                                <option>绵阳</option>
+                                                <option>广元</option>
+                                                <option>南充</option>
+                                                <option>广安</option>
+                                                <option>遂宁</option>
+                                                <option>内江</option>
+                                                <option>乐山</option>
+                                                <option>雅安</option>
+                                            </select>
+                                            <div id="container2" tag="tab" style="width: 728px; height:400px; margin: auto;">
+                                            </div>
+                                        </div>
+
+                                        <div id="zzt" style="display:none;">
+                                            城市:
+                                            <select id="cs1" onchange="zzt()">
+                                                <option>四川</option>
+                                                <option>成都</option>
+                                                <option>攀枝花</option>
+                                                <option>自贡</option>
+                                                <option>泸州</option>
+                                                <option>宜宾</option>
+                                                <option>达州</option>
+                                                <option>绵阳</option>
+                                                <option>广元</option>
+                                                <option>南充</option>
+                                                <option>广安</option>
+                                                <option>遂宁</option>
+                                                <option>内江</option>
+                                                <option>乐山</option>
+                                                <option>雅安</option>
+                                            </select>
+                                            <div id="container3" tag="tab" style="width: 728px; height:400px; margin: auto;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+
+    <link rel="stylesheet" type="text/css"
+          href="easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="css/wu.css" />
+    <link rel="stylesheet" type="text/css" href="css/icon.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtCss.css" />
+    <link rel="stylesheet" type="text/css" href="css/syExtIcon.css" />
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script >
+        function add(){
+            window.location.href='updatelanmu.html';
+        }
+    </script>
+
+</head>
+
+
+<body >
+<div class="easyui-layout" data-options="fit:true">
+    <div class="search-condition" title="查询条件" region="north" border="false" style="height:120px;" >
+        <form method="post" id="searchForm">
+            <input type="hidden" name="search_removed_eq" id="search_removed_eq" value="0"/>
+            <div style="padding-top:10px">
+                <table style="width:100%;table-layout:fixed;" class="search-table">
+                    <tr>
+                        <th class="search-label">子栏目名称：</th>
+                        <td class="td_search">
+                            <input class="easyui-textbox"   name="search_loginName_like" style="width:70%"/>
+                        </td>
+                        <th class="search-label">目录名称：</th>
+                        <td class="td_search">
+                            <input class="easyui-textbox"  name="search_userName_like" style="width:70%" />
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </form>
+        <div class="search-button" >
+            <a class="easyui-linkbutton" id="searchBtn" > 查询  </a>
+            <a class="easyui-linkbutton" id="resetBtn" > 重置  </a>
+        </div>
+    </div>
+
+    <div region="center" border="false" style="margin:3px 0" >
+        <div class="gridTool" id="tb">
+            <a class="easyui-linkbutton" iconCls="icon-add" plain="true" id="addBtn" onclick="add()">新增</a>&nbsp;|&nbsp;
+            <a class="easyui-linkbutton" iconCls="icon-remove" plain="true" id="removeBtn">删除</a>&nbsp;&nbsp;
+        </div>
+        <table id="tt" class="easyui-datagrid"
+               data-options=" fitColumns:true"
+               iconCls="icon-save"
+               rownumbers="true" pagination="true"
+               toolbar="#tb">
+            <thead>
+            <tr>
+                <th data-options="field:'ck',checkbox:true" width="100px"></th>
+                <th field="userloginname" align="center" width="100px">子栏目名称</th>
+                <th field="userrealname" align="center" width="100px">目录名称</th>
+                <th field="organname" align="center" width="100px" >模板对应html标签</th>
+                <th field="userstatus" align="center" width="100px" >下级栏目</th>
+                <th field="createdate" align="center" width="100px">编辑</th>
+
+            </tr>
+            <tbody>
+            <tr>
+                <td></td>
+                <td>单位简介</td>
+                <td>单位简介</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>领导概况</td>
+                <td>领导概况</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>各处室职能</td>
+                <td>各处室职能</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>行业新闻</td>
+                <td>行业新闻</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>通知公告</td>
+                <td>通知公告</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>法律法规</td>
+                <td>法律法规</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>行业规定</td>
+                <td>行业规定</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>标准规范</td>
+                <td>标准规范</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>办事指南</td>
+                <td>办事指南</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>栏目管理</td>
+                <td>栏目管理</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>内容模板</td>
+                <td>内容模板</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>索引模板</td>
+                <td>索引模板</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>评论管理</td>
+                <td>评论管理</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>投诉举报管理</td>
+                <td>投诉举报管理</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>局长信箱管理</td>
+                <td>局长信箱管理</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>民意调查管理</td>
+                <td>民意调查管理</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>组织机构管理</td>
+                <td>组织机构管理</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>用户管理</td>
+                <td>用户管理</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>角色管理</td>
+                <td>角色管理</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>权限管理</td>
+                <td>权限管理</td>
+                <td>html标签</td>
+                <td>暂无</td>
+                <td><a href="#">详情</a></td>
+            </tr>
+
+            </tbody>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+</html>
