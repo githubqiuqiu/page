@@ -1,0 +1,12 @@
+{"total":10,"rows":[
+  {"userloginname":"价格调查表","userrealname":"整车指数","organname":"8049","userstatus":"8049","createdate":"8049"},
+  {"userloginname":"价格调查表","userrealname":"零担重货指数","organname":"781","userstatus":"516","createdate":"671"},
+  {"userloginname":"价格调查表","userrealname":"零担轻货指数","organname":"151","userstatus":"191","createdate":"159"},
+  {"userloginname":"景气指数企业填报表","userrealname":"订单总量","organname":"495","userstatus":"480","createdate":"809"},
+  {"userloginname":"景气指数企业填报表","userrealname":"订单指数","organname":"249","userstatus":"280","createdate":"449"},
+  {"userloginname":"景气指数企业填报表","userrealname":"业务量指数","organname":"809","userstatus":"80","createdate":"49"},
+  {"userloginname":"景气指数企业填报表","userrealname":"库存指数（平均库存量指数）","organname":"149","userstatus":"680","createdate":"804"},
+  {"userloginname":"景气指数企业填报表","userrealname":"资金周转率指数","organname":"265","userstatus":"462","createdate":"122"},
+  {"userloginname":"景气指数企业填报表","userrealname":"设备利用率指数","organname":"123","userstatus":"533","createdate":"213"},
+  {"userloginname":"景气指数企业填报表","userrealname":"物流服务价格指数","organname":"345","userstatus":"221","createdate":"104"}
+]}

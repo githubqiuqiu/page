@@ -17,6 +17,13 @@
         function add(){
             window.location.href='updatelanmu.html';
         }
+
+        function cellStyler(value,row,index){
+            if (value >300){
+                return 'background-color:#ffee00;color:red;';
+            }
+        }
+
     </script>
 
 </head>
@@ -61,185 +68,24 @@
         </div>
 
         <table id="tt" class="easyui-datagrid"
-               data-options=" fitColumns:true"
-               iconCls="icon-save"
-               rownumbers="true" pagination="true"
-               toolbar="#tb">
+               data-options="
+              fitColumns:true,
+                singleSelect: true,
+                url: '/json/wljqzbzlgl.json',
+                method: 'get'
+            ">
             <thead>
             <tr>
                 <th data-options="field:'ck',checkbox:true" width="100px"></th>
                 <th field="userloginname" align="center" width="100px">表名</th>
                 <th field="userrealname" align="center" width="100px">字段名</th>
-                <th field="organname" align="center" width="100px" >12月</th>
-                <th field="userstatus" align="center" width="100px" >11月</th>
-                <th field="createdate" align="center" width="100px">10月</th>
-
+                <th field="organname" align="center" width="100px"  data-options="styler:cellStyler">12月</th>
+                <th field="userstatus" align="center" width="100px"  data-options="styler:cellStyler">11月</th>
+                <th field="createdate" align="center" width="100px" data-options="styler:cellStyler">10月</th>
             </tr>
-            <tbody>
-            <tr>
-                <td></td>
-                <td>业务行业信息(陆)</td>
-                <td>注册机构</td>
-                <td>8049</td>
-                <td>8049</td>
-                <td>8049</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>业户行业信息(陆)</td>
-                <td>经营地址所在行政区</td>
-                <td>1</td>
-                <td>1</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>车辆基本信息</td>
-                <td>车牌号码</td>
-                <td>151</td>
-                <td>164</td>
-                <td>159</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>人员证件资格类别信息</td>
-                <td>从业资格类别状态</td>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>人员从业资格证件信息</td>
-                <td>资格证照状态</td>
-                <td>1024</td>
-                <td>1272</td>
-                <td>3246</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>业户基本信息(陆)</td>
-                <td>业户名称</td>
-                <td>12</td>
-                <td>32</td>
-                <td>23</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>业户基本信息(陆)</td>
-                <td>经营范围名称</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>业户基本信息(陆)</td>
-                <td>对象ID</td>
-                <td>10</td>
-                <td>28</td>
-                <td>46</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>业户基本信息(陆)</td>
-                <td>管理机构</td>
-                <td>12</td>
-                <td>14</td>
-                <td>16</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>业户基本信息(陆)</td>
-                <td>证件有效期起</td>
-                <td>24</td>
-                <td>22</td>
-                <td>34</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>人员基本信息</td>
-                <td>人员名称</td>
-                <td>1024</td>
-                <td>1272</td>
-                <td>3246</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>车辆基本信息</td>
-                <td>牌照颜色</td>
-                <td>227</td>
-                <td>272</td>
-                <td>246</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>业户基本信息(陆)</td>
-                <td>管理机构</td>
-                <td>1024</td>
-                <td>1272</td>
-                <td>3246</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>人员基本信息</td>
-                <td>人员名称</td>
-                <td>102</td>
-                <td>127</td>
-                <td>324</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>人员基本信息</td>
-                <td>人员编号</td>
-                <td>1024</td>
-                <td>1272</td>
-                <td>3246</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>人员基本信息</td>
-                <td>人员性别</td>
-                <td>124</td>
-                <td>172</td>
-                <td>346</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>人员基本信息</td>
-                <td>人员状态</td>
-                <td>104</td>
-                <td>122</td>
-                <td>326</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>人员基本信息</td>
-                <td>人员编号</td>
-                <td>24</td>
-                <td>72</td>
-                <td>46</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>人员基本信息</td>
-                <td>经营地址</td>
-                <td>14</td>
-                <td>12</td>
-                <td>36</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>人员基本信息</td>
-                <td>人员名称</td>
-                <td>1024</td>
-                <td>1272</td>
-                <td>3246</td>
-            </tr>
-
-            </tbody>
             </thead>
         </table>
+
     </div>
 </div>
 </div>

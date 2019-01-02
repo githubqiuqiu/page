@@ -178,14 +178,16 @@
 </head>
 <script>
     $(function(){
+       var data1= ['成都-杭州', '成都-昆明', '成都-北京', '成都-杭州', '成都-乌鲁木齐'];
+       var data2=['杭州-成都','北京-成都','哈尔滨-成都','上海-成都','沈阳-成都'];
 
-        zzt("zzt1",'流出TOP5线路');
+        zzt("zzt1",'流出TOP5线路',data1);
         bzt("bzt1",'热门货物');
-        zzt("zzt2",'流入TOP5线路');
+        zzt("zzt2",'流入TOP5线路',data2);
         bzt("bzt2",'热门货物');
     });
 
-    function zzt(ids,title){
+    function zzt(ids,title,datas){
         var dom = document.getElementById(ids);
         var myChart = echarts.init(dom);
         option = {
@@ -217,7 +219,7 @@
             xAxis : [
                 {
                     type : 'category',
-                    data : ['遵义市-重庆市', '贵阳市-昆明市', '遵义市-成都市', '遵义市-广州市', '贵阳市-郑州市'],
+                    data : datas,
                     axisTick: {
                         alignWithLabel: true
                     },
@@ -332,10 +334,10 @@
     <div class="main-left fl">
         <h4>热门线路TOP10</h4>
         <ul>
-            <li class="g"><i>01</i>成都<span> &lt;&lt--&gt;&gt; </span>北京</li>
-            <li class="s"><i>02</i>成都<span> &lt;&lt--&gt;&gt; </span>南昌</li>
-            <li class="b"><i>03</i>成都<span> &lt;&lt--&gt;&gt; </span>广州</li>
-            <li><i>04</i>成都<span> &lt;&lt--&gt;&gt; </span>贵阳</li>
+            <li class="g"><i>01</i>成都<span> &lt;&lt--&gt;&gt; </span>杭州</li>
+            <li class="s"><i>02</i>北京<span> &lt;&lt--&gt;&gt; </span>成都</li>
+            <li class="b"><i>03</i>乌鲁木齐<span> &lt;&lt--&gt;&gt; </span>成都</li>
+            <li><i>04</i>哈尔滨<span> &lt;&lt--&gt;&gt; </span>成都</li>
             <li><i>05</i>成都<span> &lt;&lt--&gt;&gt; </span>武汉</li>
             <li><i>06</i>成都<span> &lt;&lt--&gt;&gt; </span>重庆</li>
             <li><i>07</i>泸州<span> &lt;&lt--&gt;&gt; </span>长沙</li>

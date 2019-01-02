@@ -22,13 +22,13 @@
             columns:[[
                 {field:'company',title:'指标名称',width:200},
                 {field:'contact',title:'指标代码',width:200},
-                {field:'country',title:'指标类型',width:200},
-                {field:'country1',title:'线网类型',width:200},
+                {field:'country',title:'指标类别',width:200},
+                {field:'country1',title:'指标级别',width:200},
                 {field:'country2',title:'操作',width:200}
             ]],
             data:[
-                {company:'轨道交通运营绩效体系',contact:'SYSTEM',country:'其他指标'
-                    ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                {company:'物流指标体系',contact:'SYSTEM',country:'整车指数'
+                    ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
 
             ]
         },
@@ -39,56 +39,63 @@
                 columns:[[
                     {field:'company',title:'指标名称',width:200},
                     {field:'contact',title:'指标代码',width:200},
-                    {field:'country',title:'指标类型',width:200},
-                    {field:'country1',title:'线网类型',width:200},
+                    {field:'country',title:'指标类别',width:200},
+                    {field:'country1',title:'指标级别',width:200},
                     {field:'country2',title:'操作',width:200}
                 ]],
                 data:[
-                    {company:'线网指标',contact:'LI',country:'其他指标'
+                    {company:'整车指数',contact:'LI',country:'整车指数'
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'零担重货指数',contact:'LI1',country:'零担重货指数'
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'零担轻货指数',contact:'BASIC',country:'零担轻货指数'
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'物流运价指数',contact:'BASIC',country:'物流运价指数'
+                        ,country1:'综合指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'订单总量',contact:'BASIC',country:'物流业务指数 '
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'订单指数',contact:'BASIC',country:'物流业务指数 '
                         ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'运营路线条数',contact:'LI1',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'运营路线长度',contact:'BASIC',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'网络运营长度',contact:'BASIC',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'网络运营长度增长率',contact:'BASIC',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'区间数',contact:'BASIC',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'运营里程数',contact:'BASIC',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'绩效指标',contact:'BASIC',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'线路车站数',contact:'BASIC',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'换乘车站数',contact:'BASIC',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'绩效指标',contact:'BASIC',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'绩效指标',contact:'BASIC',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
-                    {company:'绩效指标',contact:'BASIC',country:'其他指标'
-                        ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'业务量指数',contact:'BASIC',country:'物流业务指数 '
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'库存指数（平均库存量指数）',contact:'BASIC',country:'物流业务指数 '
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'资金周转率指数',contact:'BASIC',country:'物流效率指数'
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'设备利用率指数',contact:'BASIC',country:'物流效率指数'
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'物流服务价格指数',contact:'BASIC',country:'物流效益指数'
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'主营业务利润指数',contact:'BASIC',country:'物流效益指数'
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'从业人员指数',contact:'BASIC',country:'物流投入指数'
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'固定资产投资指数',contact:'BASIC',country:'物流投入指数'
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'业务活动预期指数',contact:'BASIC',country:'物流发展预期指数'
+                        ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                    {company:'LPI物流景气指数',contact:'BASIC',country:'LPI物流景气指数'
+                        ,country1:'综合指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+
                 ]
             },
-            subgrid:{
+          /*  subgrid:{
                 options:{
                     fitColumns:true,
                     foreignField:'orderid',
                     columns:[[
                         {field:'company',title:'指标名称',width:200},
                         {field:'contact',title:'指标代码',width:200},
-                        {field:'country',title:'指标类型',width:200},
-                        {field:'country1',title:'线网类型',width:200},
+                        {field:'country',title:'指标类别',width:200},
+                        {field:'country1',title:'指标级别',width:200},
                         {field:'country2',title:'操作',width:200}
                     ]],
                     data:[
-                        {company:'绩效指标',contact:'BASIC',country:'其他指标'
-                            ,country1:'其他级别',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
+                        {company:'业务活动预期指数',contact:'BASIC',country:'物流发展预期指数'
+                            ,country1:'分项指标',country2:'<a href="#">修改</a>&nbsp;&nbsp;<a href="#">删除</a>'},
                     ]
                 },
-                /*subgrid:{
+                /!*subgrid:{
                     options:{
                         fitColumns:true,
                         foreignField:'pid',
@@ -104,8 +111,8 @@
                             {pnumber:'82312393',pname:'Nikon COOLPIX L26 16.1 MP',supplier:'Nikon'}
                         ]
                     }
-                }*/
-            }
+                }*!/
+            }*/
         }
     };
 
