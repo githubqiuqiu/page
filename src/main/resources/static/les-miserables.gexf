@@ -186,7 +186,7 @@
         <viz:position x="-459.1107" y="-362.5133" z="0.0"></viz:position>
         <viz:color r="236" g="81" b="72"></viz:color>
       </node>
-      <node id="23" label="广州">
+      <node id="23" label="眉山">
         <attvalues>
           <attvalue for="modularity_class" value="2"></attvalue>
         </attvalues>
@@ -316,7 +316,7 @@
         <viz:position x="189.69513" y="-346.50662" z="0.0"></viz:position>
         <viz:color r="236" g="81" b="72"></viz:color>
       </node>
-      <node id="43" label="台湾">
+      <node id="43" label="广州">
         <attvalues>
           <attvalue for="modularity_class" value="6"></attvalue>
         </attvalues>
